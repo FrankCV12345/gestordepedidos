@@ -52,11 +52,10 @@ public class ADOUsuario {
         }
         return entusuario;
     }
-     ;
     public EntidadUsuario Busca_usu(String usu,String cont) {
        /*String usu="frankcv";
        String cont="entrada3";*/
-        EntidadUsuario entusuario = null;
+        EntidadUsuario entusuario= new EntidadUsuario();
         String consulta  ="select nom_usuario,contrasenia from usuario where nom_usuario ='"+usu+"' and contrasenia ='"+cont+"'";
         try{
             if(!BDconexion.estaconectado()){
@@ -65,17 +64,21 @@ public class ADOUsuario {
             PreparedStatement psmt = cnx.prepareStatement(consulta);
             /*psmt.setString(1,usu);
             psmt.setString(2,cont);*/
-            ResultSet rs = psmt.executeQuery();
-            
-                
-                while(rs.next()){
+            ResultSet rs = psmt.executeQuery(); 
+             if(rs.next()){
+                  while(rs.next()){                   
                     entusuario= new EntidadUsuario();
                     entusuario.setUsuario(rs.getString("nom_usuario"));
-                    entusuario.setPassword(rs.getString("contrasenia"));
-                }
-              msg =""+entusuario.getUsuario();
-         
-            
+                    entusuario.setPassword(rs.getString("contrasenia"));                    
+                  }
+                  return entusuario;                 
+             }
+             else{
+             return entusuario=null;
+             }
+              /*msg ="";*/
+                               
+             
         }catch(SQLException e){
             msg = " error al buscar un registro con el usuario "+e;
         }

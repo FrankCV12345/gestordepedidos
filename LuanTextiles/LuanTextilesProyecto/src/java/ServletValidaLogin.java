@@ -47,16 +47,17 @@ public class ServletValidaLogin extends HttpServlet {
             out.println("<body>");
             String UsusarioLogin = request.getParameter("usu");
             String PasswordLogin = request.getParameter("contra");
-            LnUsuario lnu = new LnUsuario();            
-            EntidadUsuario ResultUsu = lnu.Autenti(UsusarioLogin,PasswordLogin);             
-             request.getSession().setAttribute("UsuPrueba",UsusarioLogin);
-              if ( ResultUsu!=null ){
-             response.sendRedirect("/LuanTextilesProyecto/MenuSistema.jsp");
-              /*out.println("<h1> DATOS  VALIDOS "+msg+"</h1>");   */         
+            LnUsuario lnu = new LnUsuario();
+            EntidadUsuario ResultUsu = new EntidadUsuario();
+            ResultUsu = lnu.Autenti(UsusarioLogin,PasswordLogin);
+            request.getSession().setAttribute("UsuPrueba",UsusarioLogin); 
+             if ( ResultUsu!=null ){
+             response.sendRedirect("/LuanTextilesProyecto/MenuSistema.jsp");            
+             /* out.println("<h1> DATOS  VALIDOS "+msg+"</h1>");    */      
              }
               else if (ResultUsu==null){
              response.sendRedirect("/LuanTextilesProyecto/Error.jsp");
-              /*out.println("<h1>NO INGRESO"+msg+"</h1>");*/
+             /* out.println("<h1>NO INGRESO"+msg+"</h1>");*/
              }
               
              
