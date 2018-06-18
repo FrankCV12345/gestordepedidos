@@ -1,0 +1,277 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 12/05/2018, 07:44:35 PM
+    Author     : SARA
+*/
+*{
+    margin:0;
+    padding:0;
+}
+html,body{
+    width:100%;
+    height:100%;
+    font-family: 'Cairo', cursive;
+    background-color:#F0F0F0;
+}
+#app{
+    box-sizing: border-box;
+    width: 100%;
+    max-width:2000px; 
+    min-height: 100%;
+    margin: 0 auto;
+    background-color:#F2F2F2;
+    
+}
+.datos-pedido::-webkit-input-placeholder { color:white; } /* WebKit */
+.datos-pedido::-moz-placeholder { color: white; }
+
+input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button ,input[type=date]::-webkit-outer-spin-button,
+input[type=date]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+#contenerdor-padre{
+    box-sizing: border-box;
+    width: 100%;
+    min-height:100%;
+    color: white;
+    overflow: hidden;
+}
+#contenedor-items-menu-sistema{
+    box-sizing: border-box;
+    width:100px;
+    height: 100%;
+    position: fixed;
+    left:0;
+    background-color: transparent;
+    
+}
+.prueba{
+    margin-left:3.5px;
+}
+.cont-lista-pedido{
+    overflow: auto;
+    height: 200px;
+    box-sizing: border-box;
+    width: 98%;
+    margin:0 auto;
+    text-align:left;
+}
+.datos-cli,#contenedor-frmlogin input{
+    box-sizing: border-box;
+    width: 98%;
+    border:solid 2px #C55A11;
+    height: 40px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+input,select,label{
+     font-family: 'Cairo', cursive;
+}
+.cont-lista-pedido-hijo{
+    width: 100%;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    
+}
+.datos-pedido,select{
+    height: 30px;
+    text-align: center;
+    background-color: #0078D7;
+    color:white;
+    border: none;
+}
+.cbx{
+   width: 80px;
+}
+.unidades{
+  width: 50px;
+}
+
+.precio-unitario{
+    width: 50px;
+
+}
+.fecha-entrega{
+    width: 120px;
+
+}
+.detalles{
+    width: 390px;
+    
+}
+.more{
+    width: 100px;
+    margin: 0 auto;
+}
+.total{
+    width: 50px;
+}
+.more:hover{
+    cursor: pointer;
+}
+.txtelimina{
+    width: 250px;
+    margin: 0 auto;
+}
+
+.btn{
+  background-color:#5f5f5f;
+  color: #F1F1F1;
+  padding: 2px;
+  border: none;
+  -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+      
+}
+
+.btn:hover{
+    cursor: pointer;
+}
+.lbl-A{
+    font-size: 30px;
+    position: absolute;
+    padding-bottom: 0px;
+    left: 20px;
+    bottom: 0px;
+}
+
+.items-menu-sistema{
+    box-sizing: border-box;
+    padding:5px;
+    max-width:70px;
+    height:60px;
+    color:black;
+    margin-left:  auto;
+    margin-right: auto;
+    margin-top: 10px;    
+    text-align: center;
+}
+.items-menu-sistema img{
+    max-width:50px;
+    margin: 0 auto;
+    filter:contrast(0.8);
+}
+.items-menu-sistema:hover{
+    cursor:pointer;
+}
+#contenido{
+    box-sizing: border-box;
+    margin-left: 110px;    
+    overflow: hidden;
+    position: relative;
+}
+.pedidos-contenido{
+    float: left;
+    background-color: #262626;
+    margin: 2px;
+    max-width: 472px;
+    min-width: 24.5%;
+    color:#F0F0F0;
+    text-align: center;
+}
+.pedidos-contenido:hover{
+    cursor: pointer;
+   /* background-color: rgba(255,255,255,0.7)*/
+}
+.padre-ventanas{
+    min-height:100%;
+    min-width:100%;
+    background-color:rgba(0,0,0,0.8);
+    color: black;
+    position:absolute;
+    z-index: 2;
+    display: none;
+    text-align: center;
+}
+#ventana-modificar,#ventana-eliminar,#ventana-registrar{
+    position: relative;
+     /*margin-top: 10%;
+    margin-left: 25%;*/
+    top: 100px;
+    margin: 0 auto;
+    max-width: 800px;
+    max-height:500px;
+    background-color: #FFFFFF;
+    display: none;
+    padding-bottom: 10px;
+    
+}
+
+#cont-logo{
+   max-width: 300px;
+   margin: 0 auto;
+}
+#logotipo{
+    max-width: 300px;
+    margin: 0 auto;
+}
+#contenedor-login{
+    margin: 0 auto;
+    max-width: 400px;
+    height: 50%;
+    position: relative;
+    top: 25%;
+    background-color: white;
+    -webkit-box-shadow: 3px 2px 25px 1px rgba(128,128,128,1);
+    -moz-box-shadow: 3px 2px 25px 1px rgba(128,128,128,1);
+    box-shadow: 3px 2px 25px 1px rgba(128,128,128,1);
+}
+#contenedor-frmlogin{
+    max-width: 300px;
+    margin: 0 auto;
+    /*border: solid 1px red;*/
+}
+#contenedor-frmlogin form{
+    max-width: 250px;
+    margin:0 auto;
+    /*border: solid 1px blue;*/
+    box-sizing:border-box;
+    padding-top: 20px; 
+}
+#contenedor-frmlogin div {
+     width: 100%;
+     display:flex;
+     /*border: solid 1px green;*/
+}
+#contenedor-frmlogin div input{
+    width: 48%;
+    border:0;
+    margin: 2px;
+    background-color: #87189D;
+    color: white;
+}
+
+#mensaje-error-login{
+    position: relative;
+    top: 240px;
+    /*border: solid 1px blue;*/
+    max-width: 300px;
+    margin: 0 auto;
+    text-align: center;
+    color:black;
+    background-color: white;
+    padding-bottom: 5px;
+}
+
+.btn-volver-login{
+    box-sizing: border-box;
+    width:90%;
+    margin: 0 auto;
+    padding: 5px;
+    background-color:#87189D;
+}
+
+#mensaje-error-login a{
+    text-decoration: none;
+    color: white;
+}
+
+
+
+ 

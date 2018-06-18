@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>LOGIN-LUAN TEXTIL</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="EstiloLuan.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
+       <script src="LuanJs.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div id="contenedor-login">
+        <div id="cont-logo">
+            <img src="img/logos/logoipo Luan.png" alt="" id="logotipo"/>
+        </div>
+            <div  id="contenedor-frmlogin">
+                <form action="/LuanTextilesProyecto/ServletValidaLogin" method="get">
+                    <input type="text" placeholder="ingrese usuario" required name="usu">
+                    <input type="password" placeholder="ingrese contraseña" required name="contra">
+                    <div>
+                        <input type="submit" value="INGRESAR">
+                        <input type="reset" value="LIMPIAR" id="btnLimpiar" >
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
