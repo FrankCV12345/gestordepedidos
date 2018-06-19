@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
   bandera = true;
+  bandera_cerrar_sesion = true;
    indiceU = 0;
    indiceP = 0;
 function Despliega(id,padre){
@@ -20,6 +21,17 @@ function Despliega(id,padre){
          bandera = true; 
      }
     }
+ function DespliegaCS(){
+     if(bandera_cerrar_sesion === true){       
+         document.getElementById("cerrarsesion").style.marginLeft ="80px";
+         bandera_cerrar_sesion = false;
+     }
+     else{
+         document.getElementById("cerrarsesion").style.marginLeft ="0px";
+         bandera_cerrar_sesion = true;
+     }
+
+ }
 
 function getInput(type, placeholder,clase,name){
   var nodo = document.createElement("input");

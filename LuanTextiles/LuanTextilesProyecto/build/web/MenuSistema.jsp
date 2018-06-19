@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% HttpSession login =  request.getSession();
+    if(login.getAttribute("UsuPrueba")!=null){%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -275,3 +277,6 @@
           <script src="LuanJs.js" type="text/javascript"></script>
     </body>
 </html>
+ <%}
+  else{ response.sendRedirect("/LuanTextilesProyecto/index.html");}
+ %>

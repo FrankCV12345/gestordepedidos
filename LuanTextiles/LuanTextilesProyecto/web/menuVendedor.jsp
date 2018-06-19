@@ -1,16 +1,10 @@
 <div id="contenedor-items-menu-sistema">
-                    <div class="items-menu-sistema" style="height:70px;">
-                    <div>
-                    <!--INGRESAR NUEVO PEDIDO-->
-                    <% HttpSession login =  request.getSession();
-                    if(login.getAttribute("UsuPrueba")!=null){
-                     out.println("<h5>"+login.getAttribute("UsuPrueba")+"</h5>");
-                            }
-                    else{
-                      response.sendRedirect("/LuanTextilesProyecto/index.html");
-                    }
-                            %>
-                    </div>                          
+    <div class="items-menu-sistema" style="height:70px;">                     
+                     <div onclick="DespliegaCS()">
+                         <!--LOGO USUARIO-->
+                    <%  out.println("<h4>"+session.getAttribute("UsuPrueba")+"</h4>");  %>
+                     </div> 
+                     <div id="cerrarsesion"><a href="cerrar.jsp">CERRAR SESIÓN </a></div>
                 </div>
                 <div class="items-menu-sistema">
                     <div onclick="Despliega('ventana-registrar','padre-ventanas')">
