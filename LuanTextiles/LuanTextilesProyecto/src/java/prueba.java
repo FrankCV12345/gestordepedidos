@@ -41,14 +41,14 @@ public class prueba extends HttpServlet {
             out.println("<title>Servlet prueba</title>");            
             out.println("</head>");
             out.println("<body>");
-            
+            /*
             out.println("<h1> HOLA </h1>");
               Date FechaActual = new Date();          
               
              LNPedido lnpedido  = new LNPedido();
              String nombreCliente = request.getParameter("nombrecliente");
              int total = Integer.parseInt(request.getParameter("total"));           
-             /* pedidos hijo*/
+             /* pedidos hijo
              String[] categoria = request.getParameterValues("categoriacbx");
              String[] unidades = request.getParameterValues("unidades");
              String[] preciounitario = request.getParameterValues("precioUni");
@@ -78,7 +78,8 @@ public class prueba extends HttpServlet {
              out.println("<h3> fecha :"+fecha[i]+"</h3>");
              out.println("<h3> detalle :"+detalle[i]+"</h3>");
              out.println("<h3>subtotal :"+subtotal[i]+"</h3>");
-             }
+             }*/
+           
             out.println("</body>");
             out.println("</html>");
         

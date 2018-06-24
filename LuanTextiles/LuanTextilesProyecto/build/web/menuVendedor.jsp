@@ -1,8 +1,11 @@
+<%@page import="Entidades.EntidadUsuario"%>
 <div id="contenedor-items-menu-sistema">
     <div class="items-menu-sistema" style="height:70px;">                     
                      <div onclick="DespliegaCS()">
                          <!--LOGO USUARIO-->
-                    <%  out.println("<h4>"+session.getAttribute("UsuPrueba")+"</h4>");  %>
+                    <%  EntidadUsuario usuario = (EntidadUsuario)session.getAttribute("usuario");
+                        out.println("<h4>"+usuario.getNombres()+"</h4>");  %>
+                    <% out.println("<h4>"+usuario.getId()+"</h4>");%>
                      </div> 
                      <div id="cerrarsesion"><a href="cerrar.jsp">CERRAR SESIÓN </a></div>
                 </div>

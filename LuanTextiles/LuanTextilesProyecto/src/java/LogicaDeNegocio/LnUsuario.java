@@ -19,16 +19,16 @@ public class LnUsuario {
     public ADOUsuario getDatosUsuario(){
         return DatosUsuario;
     }        
-    public EntidadUsuario Autentificar(String Usuario, String Password){     
-             /*for(EntidadUsuario usu:DatosUsuario.lst){          
+     /*public EntidadUsuario Autentificar(String Usuario, String Password){     
+            for(EntidadUsuario usu:DatosUsuario.lst){          
                 if(Usuario.equals(usu.getUsuario())  && usu.getPassword().equals(Password)){
                     return true;
                        }
               }
-             return false;*/
+             return false;
             return this.getDatosUsuario().Busca_usuario(Usuario, Password);
              
-    }
+    }*/
     public EntidadUsuario Autenti(String usu,String cont){     
              /*for(EntidadUsuario usu:DatosUsuario.lst){          
                 if(Usuario.equals(usu.getUsuario())  && usu.getPassword().equals(Password)){

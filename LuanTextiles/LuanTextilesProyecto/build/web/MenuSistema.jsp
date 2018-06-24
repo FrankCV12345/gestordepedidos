@@ -5,8 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% HttpSession login =  request.getSession();
-    if(login.getAttribute("UsuPrueba")!=null){%>
+<%@page import="Entidades.EntidadUsuario"%>
+<% /*HttpSession login =  request.getSession();*/
+    EntidadUsuario usuario = (EntidadUsuario)session.getAttribute("usuario");
+    if(usuario!=null){%>
 <!DOCTYPE html>
 <html>
     <head>

@@ -29,7 +29,7 @@ public class ADOUsuario {
     public ADOUsuario(){
     }
 
-    public EntidadUsuario Busca_usuario(String usuario, String contrasenia) {
+   /* public EntidadUsuario Busca_usuario(String usuario, String contrasenia) {
         EntidadUsuario entusuario = null;
         String consulta  ="select nom_usuario,contrasenia from usuario where nom_usuario = ? and contrasenia = ?";
         try{
@@ -51,12 +51,12 @@ public class ADOUsuario {
             msg = " error al buscar un registro con el usuario "+ usuario;
         }
         return entusuario;
-    }
+    }*/
     public EntidadUsuario Busca_usu(String usu,String cont) {
        /*String usu="frankcv";
        String cont="entrada3";*/
-        EntidadUsuario entusuario= new EntidadUsuario();
-        String consulta  ="select nom_usuario,contrasenia from usuario where nom_usuario ='"+usu+"' and contrasenia ='"+cont+"'";
+        EntidadUsuario entusuario= null;
+        String consulta  ="select * from usuario where nom_usuario ='"+usu+"' and contrasenia ='"+cont+"'";
         try{
             if(!BDconexion.estaconectado()){
                 BDconexion.conectar();
@@ -65,12 +65,19 @@ public class ADOUsuario {
             /*psmt.setString(1,usu);
             psmt.setString(2,cont);*/
             ResultSet rs = psmt.executeQuery(); 
-             if(rs.next()){
+             /*if(rs.next()){*/
                   while(rs.next()){                   
                     entusuario= new EntidadUsuario();
+                    entusuario.setId(rs.getInt("id_usuario"));
+                    entusuario.setNombres(rs.getString("nombres"));
+                    entusuario.setApellidos(rs.getString("apellidos"));
+                    entusuario.setPuesto(rs.getString("puesto"));
+                    entusuario.setTelefono(rs.getString("telefono"));
                     entusuario.setUsuario(rs.getString("nom_usuario"));
-                    entusuario.setPassword(rs.getString("contrasenia"));                    
+                    entusuario.setPassword(rs.getString("contrasenia")); 
+                    
                   }
+               /*   msg =""+entusuario.getNombres();
                   return entusuario;                 
              }
              else{

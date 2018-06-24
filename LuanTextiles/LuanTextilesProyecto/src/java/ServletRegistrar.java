@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import Entidades.*;
 import LogicaDeNegocio.*;
@@ -44,13 +45,16 @@ public class ServletRegistrar extends HttpServlet {
                
             out.println("<h1> HOLA </h1>");*/
              
-              Date FechaActual = new Date();    
-              
+             /* Date FechaActual = new Date();    */
+             EntidadUsuario usuario = (EntidadUsuario) request.getSession().getAttribute("usuario");
+             
              LNPedido lnpedido  = new LNPedido();
            
              String nombreCliente = request.getParameter("nomCli");
+             int  idUsuario = usuario.getId();
+             
             
-             int total = Integer.parseInt(request.getParameter("total"));
+             
            
              
              /* pedidos hijo
@@ -62,8 +66,8 @@ public class ServletRegistrar extends HttpServlet {
              String[] subtotal = request.getParameterValues("subTotal");*/
              
              
-             if(nombreCliente!="" && total!=0 ){
-             EntidadPedidos pedido = new EntidadPedidos(nombreCliente,total);           
+             if(nombreCliente!=""){
+             EntidadPedidos pedido = new EntidadPedidos(nombreCliente,idUsuario);           
              lnpedido.Registrar(pedido);
                   out.println("si se registro");
              }

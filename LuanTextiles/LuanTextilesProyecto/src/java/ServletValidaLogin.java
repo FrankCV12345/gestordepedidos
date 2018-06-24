@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import  LogicaDeNegocio.LnUsuario;
 import Entidades.EntidadUsuario;
 import static Datos.BDconexion.msg;
@@ -50,14 +51,17 @@ public class ServletValidaLogin extends HttpServlet {
             LnUsuario lnu = new LnUsuario();
             EntidadUsuario ResultUsu = new EntidadUsuario();
             ResultUsu = lnu.Autenti(UsusarioLogin,PasswordLogin);
-            request.getSession().setAttribute("UsuPrueba",UsusarioLogin); 
+                      
+            
              if ( ResultUsu!=null ){
-             response.sendRedirect("/LuanTextilesProyecto/MenuSistema.jsp");            
-             /* out.println("<h1> DATOS  VALIDOS "+msg+"</h1>");    */      
+               HttpSession session = request.getSession();
+               session.setAttribute("usuario",ResultUsu); 
+             response.sendRedirect("/LuanTextilesProyecto/MenuSistema.jsp");           
+               /*out.println("<h1> DATOS  VALIDOS "+ResultUsu.getNombres()+"</h1>");   */        
              }
               else if (ResultUsu==null){
              response.sendRedirect("/LuanTextilesProyecto/Error.jsp");
-             /* out.println("<h1>NO INGRESO"+msg+"</h1>");*/
+              /*out.println("<h1>NO INGRESO"+msg+"</h1>");*/
              }
               
              
