@@ -23,11 +23,15 @@ public class LnPedidoHijo {
     }
     
     public boolean Registrar(EntidadPedidoHijo  peididohijo){
-      return this.getAdopedidohijo().Registrar(peididohijo);
+      return this.getAdopedidohijo().registrar(peididohijo);
     }
     
-    public List<EntidadPedidoHijo> obtenerLista(){
-     return this.getAdopedidohijo().ObtenerLista();
+    public int UltimoId(){
+      return this.getAdopedidohijo().UltimoId();
     }
+    public List<EntidadPedidoHijo> ListaPedidoHijo( int IDPadre){
+     return this.getAdopedidohijo().ListaPedidosHijo(IDPadre);
+    }
+  
     
 }

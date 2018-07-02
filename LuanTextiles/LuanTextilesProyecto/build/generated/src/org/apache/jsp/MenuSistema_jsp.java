@@ -3,6 +3,7 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import Entidades.EntidadUsuario;
 
 public final class MenuSistema_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -44,8 +45,11 @@ public final class MenuSistema_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
- HttpSession login =  request.getSession();
-    if(login.getAttribute("UsuPrueba")!=null){
+      out.write("\n");
+ /*HttpSession login =  request.getSession();*/
+    EntidadUsuario usuario = (EntidadUsuario)session.getAttribute("usuario");
+    
+    if(usuario!=null){
       out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
@@ -56,17 +60,7 @@ public final class MenuSistema_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("         <link href=\"https://fonts.googleapis.com/css?family=Cairo\" rel=\"stylesheet\">\n");
       out.write("          <!--<script src=\"LuanJs.js\" type=\"text/javascript\"></script>-->\n");
       out.write("          <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n");
-      out.write("        <script>\n");
-      out.write("          $(document).ready(function(){\n");
-      out.write("          $(\"#btnregistrar\").click(function(){\n");
-      out.write("              var nomCli = $(\"#nomCli\").val();\n");
-      out.write("              var total =  $(\"#totaljsp\").val();\n");
-      out.write("               $.get(\"/LuanTextilesProyecto/ServletRegistrar\",{nomCli,total}, function(data, status){\n");
-      out.write("                 alert(\"Data: \" + data + \"\\nStatus: \" + status);\n");
-      out.write("                });\n");
-      out.write("             });\n");
-      out.write("           });\n");
-      out.write("        </script>\n");
+      out.write("      \n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        <div id=\"app\">\n");
@@ -323,11 +317,36 @@ public final class MenuSistema_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        </div>\n");
       out.write("                      \n");
       out.write("          <script src=\"LuanJs.js\" type=\"text/javascript\"></script>\n");
+      out.write("            <script>\n");
+      out.write("           $(document).ready(function(){\n");
+      out.write("          $(\"#btnregistrar\").click(function(){\n");
+      out.write("             /*var nomCli = $(\"#nomCli\").val();\n");
+      out.write("             var total =  $(\"#totaljsp\").val();\n");
+      out.write("             var categoria = $(\".cbx\").val();\n");
+      out.write("             var unidades = $(\".unidades\").val();\n");
+      out.write("             var precio_unitario = $(\".precio-unitario\").val();\n");
+      out.write("             var fecha_entrega =$(\".fecha-entrega\").val();\n");
+      out.write("             var detalles = $(\".detalles\").val();*/\n");
+      out.write("             var subTotal = $(\".total\");\n");
+      out.write("             var canti = subTotal.length;\n");
+      out.write("             var totales = [];\n");
+      out.write("             for(var  i = 1 ; i <= canti; i++){\n");
+      out.write("                var cont = i-1;\n");
+      out.write("                 totales[cont]=subTotal[cont].value+\"-\";\n");
+      out.write("       \n");
+      out.write("             }\n");
+      out.write("          \n");
+      out.write("             $.get(\"/LuanTextilesProyecto/prueba\",{totales, function(data, status){\n");
+      out.write("                 alert(\"Data: \" + data + \"\\nStatus: \" + status);\n");
+      out.write("                });\n");
+      out.write("             });\n");
+      out.write("           });\n");
+      out.write("        </script>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
       out.write(" ");
 }
-  else{ response.sendRedirect("http://localhost:8090/LuanTextilesProyecto/index.html");}
+  else{ response.sendRedirect("/LuanTextilesProyecto/index.html");}
  
       out.write('\n');
     } catch (Throwable t) {

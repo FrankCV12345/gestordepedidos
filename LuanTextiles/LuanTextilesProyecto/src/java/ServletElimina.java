@@ -11,16 +11,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
-import Entidades.*;
-import LogicaDeNegocio.*;
-import java.util.List;
+import LogicaDeNegocio.LNPedido;
+
 /**
  *
  * @author SARA
  */
-@WebServlet(urlPatterns = {"/prueba"})
-public class prueba extends HttpServlet {
+@WebServlet(urlPatterns = {"/ServletElimina"})
+public class ServletElimina extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,48 +33,15 @@ public class prueba extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. 
-             out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet prueba</title>");            
-            out.println("</head>");
-            out.println("<body>");*/
-              int ID = Integer.parseInt( request.getParameter("RegistroPadreID"));
-             LNPedido lnpe = new LNPedido();          
-            List<EntidadPedidos> lstpedido = lnpe.listaPedidos(ID);
-            LnPedidoHijo lnpeHijo = new LnPedidoHijo();
-            List<EntidadPedidoHijo> lstpedidoHijo = lnpeHijo.ListaPedidoHijo(ID);
-              out.println("<table>");
-              
-              for(EntidadPedidos p :lstpedido ){
-                  out.println("<tr>");
-                out.println("<td><h3>"+p.getNombreCliente()+" </h3></td>");
-                out.println("<td><h3>"+p.getIdPedido()+" </h3></td>");
-                out.println("<td><h3>"+p.getFechaIngreso()+" </h3></td>");
-                out.println("<td><h3>"+p.getIdUsuario()+" </h3></td>");
-                out.println("</tr>");
+            try{
+            LNPedido lnpedido = new LNPedido();
+             int codigo =Integer.parseInt(request.getParameter("IdRegistro"));
+             boolean estado = lnpedido.Eliminar(codigo);
+              out.println(estado);
+            }catch(Exception e){
+               out.println(" NO SE  PUDO ELIMINAR"+e);
             }
-              
-            for(EntidadPedidoHijo p: lstpedidoHijo){
-                out.println("<tr>");
-                out.println("<td><h3>"+p.getCategoria()+" </h3></td>");
-                out.println("<td><h3>"+p.getPreciounitario()+" </h3></td>");
-                out.println("<td><h3>"+p.getUnidades()+" </h3></td>");
-                out.println("<td><h3>"+p.getId_pedidos_hijo()+" </h3></td>");
-                out.println("<td><h3>"+p.getId_pedidos_padre()+" </h3></td>");
-                out.println("<td><h3>"+p.getFecha_entrega()+" </h3></td>");
-                out.println("<td><h3>"+p.getDetalles()+" </h3></td>");
-                out.println("<td><h3>"+p.getSubtotal()+" </h3></td>");
-                out.println("</tr>");             
-            }
-             out.println("</table>");
-            
-            /*
-            out.println("</body>");
-            out.println("</html>");*/
-        
-    }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

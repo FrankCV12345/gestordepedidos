@@ -35,63 +35,46 @@ public class ServletRegistrar extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            /*out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletRegistrar</title>");            
-            out.println("</head>");
-            out.println("<body>");
-               
-            out.println("<h1> HOLA </h1>");*/
-             
-             /* Date FechaActual = new Date();    */
+            try{
              EntidadUsuario usuario = (EntidadUsuario) request.getSession().getAttribute("usuario");
-             
              LNPedido lnpedido  = new LNPedido();
-           
              String nombreCliente = request.getParameter("nomCli");
              int  idUsuario = usuario.getId();
-             
-            
-             
-           
-             
-             /* pedidos hijo
-             String[] categoria = request.getParameterValues("categoriacbx");
-             String[] unidades = request.getParameterValues("unidades");
-             String[] preciounitario = request.getParameterValues("precioUni");
-             String[] fecha = request.getParameterValues("fechaEntrega");
-             String[] detalle = request.getParameterValues("detalles");
-             String[] subtotal = request.getParameterValues("subTotal");*/
-             
-             
-             if(nombreCliente!=""){
+             /* pedidos hijo*/
+             String[] categoria = request.getParameterValues("categoria[]");
+             String[] unidades = request.getParameterValues("unidades[]");
+             String[] preciounitario = request.getParameterValues("precio_unitario[]");
+             String[] fecha = request.getParameterValues("FechasEntrega[]");
+             String[] detalle = request.getParameterValues("detalles[]");
+             String[] subtotal = request.getParameterValues("Subtotales[]");            
+             if(!nombreCliente.equals("") ){
              EntidadPedidos pedido = new EntidadPedidos(nombreCliente,idUsuario);           
              lnpedido.Registrar(pedido);
+             LnPedidoHijo ultimoId = new  LnPedidoHijo();
+                 int Ultimo = ultimoId.UltimoId();
+             int longitud = subtotal.length;
+               for(int i = 0; i< longitud ;i++){
+                Double subT =Double.parseDouble(subtotal[i]);
+                Double PreUnitario = Double.parseDouble(preciounitario[i]);
+                int uni = Integer.parseInt(unidades[i]);
+                EntidadPedidoHijo pedido_hijo = new EntidadPedidoHijo(categoria[i],uni,Ultimo,PreUnitario,fecha[i],detalle[i],subT);
+                LnPedidoHijo lnphijo = new LnPedidoHijo();
+                lnphijo.Registrar(pedido_hijo);
+               }
                   out.println("si se registro");
              }
              else{
                  out.println(" no se registro");
+             } 
+             }catch(Exception e){
+              out.println("NO SE PUDO"+e); 
              }
              
          
                
               
             
-              /*out.println("<h1>----------------------------------------</h1>");
-             out.println("<h1>"+unidades.length+"</h1>");
-             int longitud= unidades.length;
-             for (int  i=0; i< longitud;i++){
-             out.println("<h3> categoria :"+categoria[i]+"</h3>");
-             out.println("<h3> unidades :"+unidades[i]+"</h3>");
-             out.println("<h3>preciounitario :"+preciounitario[i]+"</h3>");
-             out.println("<h3> fecha :"+fecha[i]+"</h3>");
-             out.println("<h3> detalle :"+detalle[i]+"</h3>");
-             out.println("<h3>subtotal :"+subtotal[i]+"</h3>");
-             }
-            out.println("</body>");
-            out.println("</html>");*/
+             
         }
     }
 

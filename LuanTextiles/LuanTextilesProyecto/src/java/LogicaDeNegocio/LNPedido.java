@@ -24,8 +24,16 @@ public class LNPedido {
     public boolean Registrar(EntidadPedidos pedido){
          return this.getDao().Registrar(pedido);
     }
-    public List<EntidadPedidos> obtenerLista(){
-     return this.getDao().obtenerLista();
+    public boolean Eliminar(int ID){
+        return this.getDao().Eliminar(ID);
     }
+    
+    public List<EntidadPedidos> listaPedidos( int ID){
+      return this.getDao().ListarPedidos(ID);
+    }
+    public List<EntidadPedidos>ListaTodosLosPedidos(){
+      return this.getDao().ListarTodosPedidos();
+    }
+    
     
 }

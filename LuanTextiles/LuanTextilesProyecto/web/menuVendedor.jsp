@@ -5,7 +5,6 @@
                          <!--LOGO USUARIO-->
                     <%  EntidadUsuario usuario = (EntidadUsuario)session.getAttribute("usuario");
                         out.println("<h4>"+usuario.getNombres()+"</h4>");  %>
-                    <% out.println("<h4>"+usuario.getId()+"</h4>");%>
                      </div> 
                      <div id="cerrarsesion"><a href="cerrar.jsp">CERRAR SESIÓN </a></div>
                 </div>

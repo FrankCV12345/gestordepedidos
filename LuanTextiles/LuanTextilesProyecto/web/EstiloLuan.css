@@ -24,7 +24,6 @@ html,body{
     min-height: 100%;
     margin: 0 auto;
     background-color:#F2F2F2;
-    
 }
 .datos-pedido::-webkit-input-placeholder { color:white; } /* WebKit */
 .datos-pedido::-moz-placeholder { color: white; }
@@ -37,9 +36,9 @@ input[type=date]::-webkit-inner-spin-button{
 #contenerdor-padre{
     box-sizing: border-box;
     width: 100%;
-    min-height:100%;
+    min-height:1000px;
     color: white;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 #contenedor-items-menu-sistema{
     box-sizing: border-box;
@@ -173,8 +172,9 @@ box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
 #contenido{
     box-sizing: border-box;
     margin-left: 110px;    
-    overflow: hidden;
+    /*overflow: hidden;*/
     position: relative;
+    min-height:1000px;
 }
 .pedidos-contenido{
     float: left;
@@ -189,7 +189,7 @@ box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
     cursor: pointer;
    /* background-color: rgba(255,255,255,0.7)*/
 }
-.padre-ventanas{
+.padre-ventanas,#modlaPedido{
     min-height:100%;
     min-width:100%;
     background-color:rgba(0,0,0,0.8);
@@ -213,6 +213,10 @@ box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
     
 }
 
+#modlaPedidoHijo{
+   border: solid 1px red;
+   color:white;
+}
 #cont-logo{
    max-width: 300px;
    margin: 0 auto;
