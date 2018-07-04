@@ -85,10 +85,63 @@ public class AdoPedidoHijo {
            ListaPedidoHijo.add(PH);
          }
        }catch(SQLException e){
-       
+        msg =" no se pudo ejecutar";
         }
      
      return ListaPedidoHijo;
    }
+     public boolean ModificaPedidoHijo(int IDPedidoHijo , int def,String campos ){
+         String consulta ="";
+         int resultado = 0;
+         int campoInt = 0;
+         Double campoDouble = 0.0;
+         switch(def){
+             case 0: 
+                     consulta =" update peidos_hijo set categoria =?  where id_pedidos_hijo = ?";
+                     break;
+             case 1: 
+                     consulta =" update peidos_hijo set unidades =?  where id_pedidos_hijo = ?";
+                      campoInt  =Integer.parseInt(campos);
+                     break;
+             case 2: 
+                     consulta =" update peidos_hijo set precio_unitario =?  where id_pedidos_hijo = ?";
+                      campoDouble  =Double.parseDouble(campos);
+                     break;
+             case 3: 
+                     consulta =" update peidos_hijo set fecha_entrega =?  where id_pedidos_hijo = ?";
+                     break;
+             case 4: 
+                     consulta =" update peidos_hijo set detalle =?  where id_pedidos_hijo = ?";
+                     break;
+             default: msg="no se ingresó nigun def";break;
+         }
+          try{
+             if(!BDconexion.estaconectado()){
+                  BDconexion.conectar();
+              }
+             PreparedStatement psmt = cnx.prepareStatement(consulta);
+              if(def ==0|| def==3 || def ==4){
+                  psmt.setString(1, campos);
+                  psmt.setInt(2, IDPedidoHijo);
+                  resultado  =  psmt.executeUpdate();
+                }
+              else if(def ==1){
+                  psmt.setInt(1, campoInt);
+                  psmt.setInt(2, IDPedidoHijo);
+                  resultado  =  psmt.executeUpdate();
+                }
+              else if(def ==2){
+                  psmt.setDouble(1, campoDouble);
+                  psmt.setInt(2, IDPedidoHijo);
+                  resultado  =  psmt.executeUpdate();
+               }
+              
+              
+           }catch(SQLException e){
+              msg =" no se pudo";
+           }
+       
+        return (resultado!=0)?true:false;
+     }
    
 }

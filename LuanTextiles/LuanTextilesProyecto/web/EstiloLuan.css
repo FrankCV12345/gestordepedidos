@@ -209,13 +209,39 @@ box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
     max-height:500px;
     background-color: #FFFFFF;
     display: none;
-    padding-bottom: 10px;
+    padding-bottom: 10px; 
+}
+#caja-pedido{
+   
+}
+#caja-pedido th{
+    background-color: #1B242F;
+    color: white;
+}
+#caja-pedido table{
+    margin: 0 auto;
     
 }
-
+#caja-pedido h3{
+    font-size: 12px;
+}
 #modlaPedidoHijo{
-   border: solid 1px red;
-   color:white;
+   position: relative;
+   padding-top: 50px;
+   padding-bottom: 50px;
+}
+#modlaPedidoHijo table{
+    margin: 0 auto;
+}
+#modlaPedidoHijo td,th{
+    /*border: solid 2px #E9E8E2;*/
+    background-color: white;
+    color: black;
+    padding: 5px;
+}
+#modlaPedidoHijo th{
+    background-color: #1B242F;
+    color: white;
 }
 #cont-logo{
    max-width: 300px;
@@ -246,7 +272,7 @@ box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
     margin:0 auto;
     /*border: solid 1px blue;*/
     box-sizing:border-box;
-    padding-top: 20px; 
+    padding-top: 0px; 
 }
 #contenedor-frmlogin div {
      width: 100%;

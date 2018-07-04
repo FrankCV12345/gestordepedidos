@@ -34,6 +34,8 @@ public class LNPedido {
     public List<EntidadPedidos>ListaTodosLosPedidos(){
       return this.getDao().ListarTodosPedidos();
     }
-    
+    public boolean ModificaNomPedidoPadre(String NuevoNombre, int ID){
+      return this.getDao().ModificaPedidosPadre(NuevoNombre, ID);
+    }
     
 }

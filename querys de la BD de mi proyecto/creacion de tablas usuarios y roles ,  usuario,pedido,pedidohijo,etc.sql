@@ -62,6 +62,7 @@ select * from pedidos_padre;
 select nom_usuario,contrasenia from adminFCV.usuario where nom_usuario='frankcv' and contrasenia ='entrada3' ;
 select * from usuario where nom_usuario = 'frankcv' and contrasenia = 'entrada3'
 select  * from peidos_hijo where id_pedidos_padre =142;
+select * from pedidos_padre where id_pedidos_padre =142;
 /*CREANDO USUARIOS*/
 create user frankcv identified by entrada3;
 create user lucasrp identified by entrada3;

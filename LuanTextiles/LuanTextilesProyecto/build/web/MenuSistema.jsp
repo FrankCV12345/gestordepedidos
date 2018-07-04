@@ -78,10 +78,36 @@
                          indicador = false;
                      }
                     
-                   $.get("/LuanTextilesProyecto/prueba",{RegistroPadreID}, function(data, status){
+                   $.get("/LuanTextilesProyecto/ServletListaryBuscar",{RegistroPadreID}, function(data){
                            $("#modlaPedidoHijo").html(data);
                      });
                   });
+                  
+                  
+                  $("#btnBuscar").click(function(){
+                    var RegistroPadreID = $("#IdPedidoPadre").val();  
+                    $.get("/LuanTextilesProyecto/ServletListaryBuscar",{RegistroPadreID},function(data){
+                            $("#caja-pedido").html(data); 
+                       });
+                    });
+                    
+                $("body").on('click','#nomcli',function(){
+                    var  nombre = prompt("Ingrese nuevo nombre", "nuevo nombre");
+                    var  IdPadre =parseInt($("#IDPadre").text());
+                        if(nombre === null){
+                           alert("no ingreso un nombre ");
+                        }
+                        else{
+                        $.get("/LuanTextilesProyecto/ServletModificaPedidoPadre",{nombre,IdPadre},function(data){
+                         alert(data); 
+                           }); 
+                         } 
+                    });
+                $("body").on('click',".categoria",function(){
+                      var categoria = $(this).text();
+                    
+                });
+                   
                });
                
         
@@ -112,7 +138,7 @@
                           <div id="modlaPedidoHijo">
                          
                           </div>
-                          <input type="button" value="CERRAR" class="btnMostrarModalP" > 
+                          <input type="button" value="CERRAR" class="btnMostrarModalP datos-pedido more btn" > 
                       </div>
                       
                    <div class="padre-ventanas" >

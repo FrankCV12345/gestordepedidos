@@ -32,6 +32,9 @@ public class LnPedidoHijo {
     public List<EntidadPedidoHijo> ListaPedidoHijo( int IDPadre){
      return this.getAdopedidohijo().ListaPedidosHijo(IDPadre);
     }
+    public boolean ModificaPedidoHijo(int IDPedidoHijo , int def,String campos ){
+     return this.getAdopedidohijo().ModificaPedidoHijo(IDPedidoHijo, def, campos);
+    }
   
     
 }

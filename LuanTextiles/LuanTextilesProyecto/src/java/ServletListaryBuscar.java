@@ -19,8 +19,8 @@ import java.util.List;
  *
  * @author SARA
  */
-@WebServlet(urlPatterns = {"/prueba"})
-public class prueba extends HttpServlet {
+@WebServlet(urlPatterns = {"/ServletListaryBuscar"})
+public class ServletListaryBuscar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,25 +35,39 @@ public class prueba extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. 
-             out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet prueba</title>");            
-            out.println("</head>");
-            out.println("<body>");*/
-            int idhijo =Integer.parseInt( request.getParameter("sadas"));
-            int definidor =Integer.parseInt( request.getParameter("sadas"));
-            String campos = request.getParameter("sad");
+            /* TODO output your page here. You may use following sample code. */
+            int ID = Integer.parseInt( request.getParameter("RegistroPadreID"));
+             LNPedido lnpe = new LNPedido();          
+            List<EntidadPedidos> lstpedido = lnpe.listaPedidos(ID);
+            LnPedidoHijo lnpeHijo = new LnPedidoHijo();
+            List<EntidadPedidoHijo> lstpedidoHijo = lnpeHijo.ListaPedidoHijo(ID);
+              out.println("<table>");
+              
+              for(EntidadPedidos p :lstpedido ){
+                   out.println("<tr><th>Nombre</th><th>ID pedido</th><th>Fecha de registro</th><th>Usuario</th></tr>");
+                  out.println("<tr>");
+                out.println("<td><h3 id='nomcli'>"+p.getNombreCliente()+" </h3></td>");
+                out.println("<td><h3 id='IDPadre'>"+p.getIdPedido()+" </h3></td>");
+                out.println("<td><h3>"+p.getFechaIngreso()+" </h3></td>");
+                out.println("<td><h3>"+p.getIdUsuario()+" </h3></td>");
+                out.println("</tr>");
+            }
+              out.println("<tr><th><h3>Categoria</h3></th><th><h3>Pre Unitario</h3></th><th><h3>Unidades</h3></th><th><h3>ID Detalle</h3></th><th><h3>ID Pedido</h3></th><th><h3>Fecha entrega</h3><th><h3>Detalles</h3> <th><h3>Sub Total</h3></th></th></th>");
+            for(EntidadPedidoHijo p: lstpedidoHijo){
+                out.println("<tr>");
+                out.println("<td><h3 class='categoria'>"+p.getCategoria()+" </h3></td>");
+                out.println("<td><h3>"+p.getPreciounitario()+" </h3></td>");
+                out.println("<td><h3>"+p.getUnidades()+" </h3></td>");
+                out.println("<td><h3 class='IdHijo'>"+p.getId_pedidos_hijo()+" </h3></td>");
+                out.println("<td><h3>"+p.getId_pedidos_padre()+" </h3></td>");
+                out.println("<td><h3>"+p.getFecha_entrega()+" </h3></td>");
+                out.println("<td><h5>"+p.getDetalles()+" </h5></td>");
+                out.println("<td><h3>"+p.getSubtotal()+" </h3></td>");
+                out.println("</tr>");             
+            }
+             out.println("</table>");
             
-              LnPedidoHijo lnph = new LnPedidoHijo();
-              boolean result = lnph.ModificaPedidoHijo(idhijo, definidor,campos);
-              out.println(result);
-            /*
-            out.println("</body>");
-            out.println("</html>");*/
-        
-    }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -130,7 +130,24 @@ public class AdoPedido {
        return ListaPedido;
    
    }
- 
+    public boolean ModificaPedidosPadre( String NuevoNombre, int ID ){
+        String consulta ="update pedidos_padre  set nom_cliente =?  where id_pedidos_padre = ?";
+        int resultado = 0;
+        try{
+          if(!BDconexion.estaconectado()){
+            BDconexion.conectar();
+           }
+          PreparedStatement psmt = cnx.prepareStatement(consulta);
+          psmt.setString(1, NuevoNombre);
+          psmt.setInt(2, ID);
+          resultado  =  psmt.executeUpdate();
+           msg ="si se modifico";
+        }catch(SQLException e){
+             msg="Error al intentar modificar pedido " + e.getMessage();
+        }
+        
+        return (resultado!=0)?true:false;
+     }
    
    
 }

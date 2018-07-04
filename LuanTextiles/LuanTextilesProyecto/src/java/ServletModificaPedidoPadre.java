@@ -11,16 +11,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
-import Entidades.*;
 import LogicaDeNegocio.*;
-import java.util.List;
+
 /**
  *
  * @author SARA
  */
-@WebServlet(urlPatterns = {"/prueba"})
-public class prueba extends HttpServlet {
+@WebServlet(urlPatterns = {"/ServletModificaPedidoPadre"})
+public class ServletModificaPedidoPadre extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,25 +33,13 @@ public class prueba extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. 
-             out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet prueba</title>");            
-            out.println("</head>");
-            out.println("<body>");*/
-            int idhijo =Integer.parseInt( request.getParameter("sadas"));
-            int definidor =Integer.parseInt( request.getParameter("sadas"));
-            String campos = request.getParameter("sad");
-            
-              LnPedidoHijo lnph = new LnPedidoHijo();
-              boolean result = lnph.ModificaPedidoHijo(idhijo, definidor,campos);
-              out.println(result);
-            /*
-            out.println("</body>");
-            out.println("</html>");*/
-        
-    }
+            /* TODO output your page here. You may use following sample code. */
+            String nomcliente = request.getParameter("nombre");
+            int idPadre = Integer.parseInt(request.getParameter("IdPadre"));
+             LNPedido lnp = new LNPedido();
+               boolean result = lnp.ModificaNomPedidoPadre(nomcliente,idPadre);
+               out.println(result);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
