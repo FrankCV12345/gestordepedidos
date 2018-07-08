@@ -15,6 +15,7 @@ import java.util.Date;
 import Entidades.*;
 import LogicaDeNegocio.*;
 import java.util.List;
+import static Datos.BDconexion.msg;
 /**
  *
  * @author SARA
@@ -35,24 +36,14 @@ public class prueba extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. 
-             out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet prueba</title>");            
-            out.println("</head>");
-            out.println("<body>");*/
-            int idhijo =Integer.parseInt( request.getParameter("sadas"));
-            int definidor =Integer.parseInt( request.getParameter("sadas"));
-            String campos = request.getParameter("sad");
-            
-              LnPedidoHijo lnph = new LnPedidoHijo();
-              boolean result = lnph.ModificaPedidoHijo(idhijo, definidor,campos);
-              out.println(result);
+             int  idUsus = Integer.parseInt(request.getParameter("iduser"));
+            LnAdmin ln = new LnAdmin();
+             boolean estado =  ln.EliminarUser(idUsus);
+             out.println(estado);
             /*
             out.println("</body>");
             out.println("</html>");*/
-        
+          
     }
     }
 

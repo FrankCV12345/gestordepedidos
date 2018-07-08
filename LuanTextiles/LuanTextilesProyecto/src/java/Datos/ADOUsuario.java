@@ -18,43 +18,11 @@ import static Datos.BDconexion.msg;
  * @author SARA
  */
 public class ADOUsuario {  
-    /*public List<EntidadUsuario> lst;
-    public ADOUsuario () {
-    lst=new ArrayList<EntidadUsuario>();
-    lst.add(new EntidadUsuario("FrankCV","12345","Frank","Campos Vilchez"));
-    lst.add(new EntidadUsuario("JuanL","12345","Juan","Lopez Rojas"));
-    lst.add(new EntidadUsuario("RonaldI","12345","Ronald","Inchica Sifuentes"));
-    }*/
-    
+
     public ADOUsuario(){
     }
-
-   /* public EntidadUsuario Busca_usuario(String usuario, String contrasenia) {
-        EntidadUsuario entusuario = null;
-        String consulta  ="select nom_usuario,contrasenia from usuario where nom_usuario = ? and contrasenia = ?";
-        try{
-            if(!BDconexion.estaconectado()){
-                BDconexion.conectar();
-            }
-            PreparedStatement psmt = cnx.prepareStatement(consulta);
-            psmt.setString(1,usuario);
-            psmt.setString(2,contrasenia);
-            ResultSet rs = psmt.executeQuery();           
-                while(rs.next()){
-                    entusuario= new EntidadUsuario();
-                    entusuario.setUsuario(rs.getString("nom_usuario"));
-                    entusuario.setPassword(rs.getString("contrasenia"));
-                }
-            
-            
-        }catch(SQLException e){
-            msg = " error al buscar un registro con el usuario "+ usuario;
-        }
-        return entusuario;
-    }*/
     public EntidadUsuario Busca_usu(String usu,String cont) {
-       /*String usu="frankcv";
-       String cont="entrada3";*/
+      
         EntidadUsuario entusuario= null;
         String consulta  ="select * from usuario where nom_usuario ='"+usu+"' and contrasenia ='"+cont+"'";
         try{
@@ -62,10 +30,9 @@ public class ADOUsuario {
                 BDconexion.conectar();
             }
             PreparedStatement psmt = cnx.prepareStatement(consulta);
-            /*psmt.setString(1,usu);
-            psmt.setString(2,cont);*/
+           
             ResultSet rs = psmt.executeQuery(); 
-             /*if(rs.next()){*/
+     
                   while(rs.next()){                   
                     entusuario= new EntidadUsuario();
                     entusuario.setId(rs.getInt("id_usuario"));
@@ -75,17 +42,9 @@ public class ADOUsuario {
                     entusuario.setTelefono(rs.getString("telefono"));
                     entusuario.setUsuario(rs.getString("nom_usuario"));
                     entusuario.setPassword(rs.getString("contrasenia")); 
+                    entusuario.setEstado(rs.getString("estado"));
                     
                   }
-               /*   msg =""+entusuario.getNombres();
-                  return entusuario;                 
-             }
-             else{
-             return entusuario=null;
-             }
-              /*msg ="";*/
-                               
-             
         }catch(SQLException e){
             msg = " error al buscar un registro con el usuario "+e;
         }

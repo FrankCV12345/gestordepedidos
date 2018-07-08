@@ -10,7 +10,22 @@ create sequence id_pedido
 create sequence id_usuario
  start with 1
  increment by 1;
+ create sequence seq_id_admin
+ start with 1
+ increment by 1;
 /*CREANDO TABLAS*/
+create table administradores(
+idadministrador int primary key ,
+nombres varchar(20),
+apellidos varchar(100),
+nivel varchar(1),
+telefono varchar(9),
+nom_usuario char(8),
+contrasenia char(8)
+);
+
+select * from usuario;
+
 create table usuario(
 id_usuario int primary key,
 nombres varchar(20),
@@ -18,15 +33,18 @@ apellidos varchar(100),
 puesto varchar(20),
 telefono varchar(9),
 nom_usuario char(8),
-contrasenia char(8)
+contrasenia char(8),
+idadministrador int,
+estado char(1) default '0',
+foreign key (idadministrador) references administradores(idadministrador)
 );
-select * from usuario;
 
 create table pedidos_padre(
 id_pedidos_padre int primary key,
 id_usuario int,
 fecha_registro date,
 nom_cliente varchar(150),
+estado char(1) default '0',
 foreign key(id_usuario)
 references usuario(id_usuario)
 );
@@ -44,26 +62,48 @@ foreign key(id_pedidos_padre)
 references   pedidos_padre(id_pedidos_padre)   
 );
 
-/*INSERTO DATOS */
-insert into usuario(id_usuario,nombres,apellidos,puesto,telefono,nom_usuario,contrasenia)
-values(id_usuario.nextval,'frank','campos vilchez','administrador','990418363','frankcv','entrada3');
+/*INSERTO DATOS USUARIOS */
+insert into usuario(id_usuario,nombres,apellidos,puesto,telefono,nom_usuario,contrasenia,estado,idadministrador)
+values(id_usuario.nextval,'frank','campos vilchez','administrador','990418363','frankcv','entrada3','0',1);
 
-insert into usuario(id_usuario,nombres,apellidos,puesto,telefono,nom_usuario,contrasenia)
-values(id_usuario.nextval,'lucas','ramos  peres','operario','990718363','lucasrp','entrada3');
+insert into usuario(id_usuario,nombres,apellidos,puesto,telefono,nom_usuario,contrasenia,estado,idadministrador)
+values(id_usuario.nextval,'lucas','ramos  peres','operario','990718363','lucasrp','entrada3','0',1);
 
-insert into usuario(id_usuario,nombres,apellidos,puesto,telefono,nom_usuario,contrasenia)
-values(id_usuario.nextval,'juana','lopez rojas','operario','990418383','juanalr','entrada3');
+insert into usuario(id_usuario,nombres,apellidos,puesto,telefono,nom_usuario,contrasenia,estado,idadministrador)
+values(id_usuario.nextval,'juana','lopez rojas','operario','990418383','juanalr','entrada3','0',1);
+select * from usuario;
 
-insert into pedidos_padre(id_pedidos_padre,id_usuario,fecha_registro,nom_cliente)
-values(id_pedido.nextval,2,sysdate,'ana jara');
-select * from pedidos_padre;
-insert  into peidos_hijo values(id_pedido_hijo.nextval,21,'chompas',5,25,'05/07/2018','con rayas rojas',125);
-select * from pedidos_padre;
-select nom_usuario,contrasenia from adminFCV.usuario where nom_usuario='frankcv' and contrasenia ='entrada3' ;
-select * from usuario where nom_usuario = 'frankcv' and contrasenia = 'entrada3'
-select  * from peidos_hijo where id_pedidos_padre =142;
-select * from pedidos_padre where id_pedidos_padre =142;
+/*INSERTO ADMINISTRADORES*/
+insert into administradores values(seq_id_admin.nextval,'maria',' aguirre aguirre','1','990418383','mariaagi','entrada3');
 /*CREANDO USUARIOS*/
 create user frankcv identified by entrada3;
 create user lucasrp identified by entrada3;
 create user juanalr identified by entrada3;
+
+/*procedimientos almacenados */
+ create or replace procedure modifica_unidades( nvounidades  int, idHijo  int) is
+begin
+  UPDATE peidos_hijo ph SET ph.unidades =  nvounidades
+     WHERE ph.id_pedidos_hijo = idHijo;
+   update peidos_hijo ph set ph.sub_total = (select precio_unitario * unidades from peidos_hijo  where id_pedidos_hijo =idhijo ) 
+   where id_pedidos_hijo =idhijo;
+     commit;
+end modifica_unidades;
+
+create or replace procedure modifica_precio(precio  decimal, idHijo  int) is
+begin
+  UPDATE peidos_hijo ph SET ph.precio_unitario =  precio
+     WHERE ph.id_pedidos_hijo = idhijo;
+   update peidos_hijo ph set ph.sub_total = (select precio_unitario * unidades from peidos_hijo  where id_pedidos_hijo =idhijo ) 
+   where id_pedidos_hijo =idhijo;
+   commit;
+end modifica_precio;
+
+begin 
+   modifica_unidades(21,91);
+  end;
+  select * from peidos_hijo;
+
+/* PROBANDO*/
+
+

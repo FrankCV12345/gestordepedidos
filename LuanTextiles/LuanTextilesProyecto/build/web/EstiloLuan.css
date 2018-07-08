@@ -189,6 +189,9 @@ box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
     cursor: pointer;
    /* background-color: rgba(255,255,255,0.7)*/
 }
+.estado{
+    background-color:#4267B2;
+}
 .padre-ventanas,#modlaPedido{
     min-height:100%;
     min-width:100%;
@@ -199,7 +202,7 @@ box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
     display: none;
     text-align: center;
 }
-#ventana-modificar,#ventana-eliminar,#ventana-registrar{
+#ventana-listar,#ventana-modificar,#ventana-eliminar,#ventana-registrar{
     position: relative;
      /*margin-top: 10%;
     margin-left: 25%;*/
@@ -211,18 +214,16 @@ box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
     display: none;
     padding-bottom: 10px; 
 }
-#caja-pedido{
-   
-}
-#caja-pedido th{
+
+#lista-users th,#caja-usu th, #caja-pedido th{
     background-color: #1B242F;
     color: white;
 }
-#caja-pedido table{
+ #lista-users table,#caja-usu table,#caja-pedido table{
     margin: 0 auto;
     
 }
-#caja-pedido h3{
+#caja-usu ,#caja-pedido h3{
     font-size: 12px;
 }
 #modlaPedidoHijo{
@@ -242,6 +243,9 @@ box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
 #modlaPedidoHijo th{
     background-color: #1B242F;
     color: white;
+}
+#modlaPedidoHijo table .efecto:hover{
+    cursor: pointer;
 }
 #cont-logo{
    max-width: 300px;

@@ -14,6 +14,16 @@ public class EntidadPedidos {
     private int IdPedido,idUsuario;
    /* private static int IdPedidoSgt = 1;*/   
     private String fechaIngreso ;
+    private  String  estado;
+
+    
+    public EntidadPedidos(String nombreCliente, int IdPedido, int idUsuario, String fechaIngreso, String estado) {
+        this.nombreCliente = nombreCliente;
+        this.IdPedido = IdPedido;
+        this.idUsuario = idUsuario;
+        this.fechaIngreso = fechaIngreso;
+        this.estado = estado;
+    }
     
 
     public EntidadPedidos(String nombreCliente, int IdPedido, int idUsuario, String fechaIngreso) {
@@ -69,7 +79,13 @@ public class EntidadPedidos {
     public void setFechaIngreso(String fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
-    
-    
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     
 }

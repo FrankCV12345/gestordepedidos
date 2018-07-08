@@ -24,7 +24,7 @@
           <!--<script src="LuanJs.js" type="text/javascript"></script>-->
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
           <script>
-             
+            
            $(document).ready(function(){
                  var indicador = false;
           $("#btnregistrar").click(function(){
@@ -94,18 +94,154 @@
                 $("body").on('click','#nomcli',function(){
                     var  nombre = prompt("Ingrese nuevo nombre", "nuevo nombre");
                     var  IdPadre =parseInt($("#IDPadre").text());
-                        if(nombre === null){
+                        if(!isNaN(nombre) || nombre >= 0 || nombre <= 0){
                            alert("no ingreso un nombre ");
                         }
                         else{
                         $.get("/LuanTextilesProyecto/ServletModificaPedidoPadre",{nombre,IdPadre},function(data){
                          alert(data); 
+                          location.reload();
+                           }); 
+                         } 
+                    });
+                     $("body").on('click','#estado',function(){
+                    var  estado = prompt(" 0 : en espera , 1 : entregado", "solo ingrese 0 / 1");
+                    var  IdPadre =parseInt($("#IDPadre").text());
+                        if(isNaN(estado) || estado > 1 || estado < 0){
+                           alert("no ingreso un estado ");
+                        }
+                        else{
+                        $.get("/LuanTextilesProyecto/ServletCambiaEstadoPedido",{estado,IdPadre},function(data){
+                         alert(data); 
+                          location.reload();
                            }); 
                          } 
                     });
                 $("body").on('click',".categoria",function(){
+                      var campo1 = prompt("ingrese  nueva categoria","nueva categoria");
                       var categoria = $(this).text();
-                    
+                      var elemtsCategoria =  $(".categoria");
+                      var argCategoria = [];
+                      var b;
+                      var idHijo = $(".IdHijo");
+                      var valorIdHijo ;
+                      var definidor = 0;
+                      for(var i = 1 ; i<= elemtsCategoria.length; i++){
+                          var n =  i-1;
+                          argCategoria[n] = elemtsCategoria[n].innerHTML;
+                      }
+                      b = argCategoria.indexOf(categoria);
+                      valorIdHijo = idHijo[b].innerText;
+                       if(!isNaN(campo1)){
+                           alert("no ingreso una categoria ");
+                        }
+                        else{
+                      $.get("/LuanTextilesProyecto/ServletModificaPedidohijo",{definidor ,valorIdHijo,campo1},function(data){
+                          alert(data);
+                           location.reload();
+                      });
+                         }
+                });
+                
+                  $("body").on('click',".PreUni",function(){
+                      var campo1 = prompt("ingrese nuevo precio","nuevo precio unitario");
+                      var precio = $(this).text();
+                      var elemtsPrecio =  $(".PreUni");
+                      var argPrecio = [];
+                      var b;
+                      var idHijo = $(".IdHijo");
+                      var valorIdHijo ;
+                      var definidor = 1;
+                      for(var i = 1 ; i<= elemtsPrecio.length; i++){
+                          var n =  i-1;
+                          argPrecio[n] = elemtsPrecio[n].innerHTML;
+                      }
+                      b = argPrecio.indexOf(precio);
+                      valorIdHijo = idHijo[b].innerText;
+                      if(isNaN(campo1)){
+                           alert("no ingreso un numero   ");
+                        }
+                        else{
+                      $.get("/LuanTextilesProyecto/ServletModificaPedidohijo",{definidor ,valorIdHijo,campo1},function(data){
+                          alert(data);
+                           location.reload();
+                      });
+                      }
+                });
+                $("body").on('click',".Uni",function(){
+                      var campo1 = prompt("ingrese unidades","unidades");
+                      var precio = $(this).text();
+                      var elemtsPrecio =  $(".Uni");
+                      var argPrecio = [];
+                      var b;
+                      var idHijo = $(".IdHijo");
+                      var valorIdHijo ;
+                      var definidor = 2;
+                      for(var i = 1 ; i<= elemtsPrecio.length; i++){
+                          var n =  i-1;
+                          argPrecio[n] = elemtsPrecio[n].innerHTML;
+                      }
+                      b = argPrecio.indexOf(precio);
+                      valorIdHijo = idHijo[b].innerText;
+                      if(isNaN(campo1)){
+                           alert("no un numero");
+                        }
+                        else{
+                      $.get("/LuanTextilesProyecto/ServletModificaPedidohijo",{definidor ,valorIdHijo,campo1},function(data){
+                          alert(data);
+                           location.reload();
+                      });
+                      }
+                });
+                 $("body").on('click',".fecha",function(){
+                      var campo1 = prompt("ingrese nueva fecha","DD/MM/AAAA");
+                      var precio = $(this).text();
+                      var elemtsPrecio =  $(".fecha");
+                      var argPrecio = [];
+                      var b;
+                      var idHijo = $(".IdHijo");
+                      var valorIdHijo ;
+                      var definidor = 3;
+                      for(var i = 1 ; i<= elemtsPrecio.length; i++){
+                          var n =  i-1;
+                          argPrecio[n] = elemtsPrecio[n].innerHTML;
+                      }
+                      b = argPrecio.indexOf(precio);
+                      valorIdHijo = idHijo[b].innerText;
+                      if(campo1 === null){
+                           alert("no ingreso una fecha");
+                        }
+                        else{
+                      $.get("/LuanTextilesProyecto/ServletModificaPedidohijo",{definidor ,valorIdHijo,campo1},function(data){
+                          alert(data);
+                           location.reload();
+                      });
+                      }
+                });
+                $("body").on('click',".detalle",function(){
+                      var campo1 = prompt("ingrese nuevo detalle","detalle");
+                      var precio = $(this).text();
+                      var elemtsPrecio =  $(".detalle");
+                      var argPrecio = [];
+                      var b;
+                      var idHijo = $(".IdHijo");
+                      var valorIdHijo ;
+                      var definidor = 4;
+                      for(var i = 1 ; i<= elemtsPrecio.length; i++){
+                          var n =  i-1;
+                          argPrecio[n] = elemtsPrecio[n].innerHTML;
+                      }
+                      b = argPrecio.indexOf(precio);
+                      valorIdHijo = idHijo[b].innerText;
+                      if(campo1 === null){
+                           alert("no ingreso un detalle");
+                        }
+                        else{
+                      $.get("/LuanTextilesProyecto/ServletModificaPedidohijo",{definidor ,valorIdHijo,campo1},function(data){
+                          alert(data);
+                           location.reload();
+                      });
+                      }
                 });
                    
                });
@@ -129,10 +265,19 @@
                          LNPedido lnpe = new LNPedido();
                          List<EntidadPedidos> lstpedido = lnpe.ListaTodosLosPedidos();
                         %>
-                        <% for(EntidadPedidos p :lstpedido ){%>
+                        <% for(EntidadPedidos p :lstpedido ){
+                           String estado = p.getEstado();
+                           if(estado.equals("0")){
+                           %>
                         <div class="pedidos-contenido">
-                        <%out.println("<h1>"+p.getIdPedido()+""); %>
+                        <%  out.println("<h1>"+p.getIdPedido()+"</h1>"); %>
                         </div>
+                        <%} else{%>
+                        <div class="pedidos-contenido estado">
+                        <%  out.println("<h1>"+p.getIdPedido()+"</h1>"); %>
+                        </div>
+                        <%}%>
+                        
                       <%}%>
                       <div id="modlaPedido">
                           <div id="modlaPedidoHijo">

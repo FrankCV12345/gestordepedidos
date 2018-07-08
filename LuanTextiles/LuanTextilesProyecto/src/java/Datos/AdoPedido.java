@@ -24,9 +24,7 @@ public class AdoPedido {
    
     
     public boolean Registrar(EntidadPedidos pedido){
-    /*ListaLibro.add(pedido);
-        return true;*/
-     String consulta  ="insert into pedidos_padre values(id_pedido.nextval,?,sysdate,?)";
+     String consulta  ="insert into pedidos_padre values(id_pedido.nextval,?,sysdate,?,'0')";
      int resultado =0;
        try{
        
@@ -93,6 +91,7 @@ public class AdoPedido {
              p.setIdUsuario(rs.getInt("id_usuario"));
              p.setFechaIngreso(rs.getString("fecha_registro"));
              p.setNombreCliente(rs.getString("nom_cliente"));
+             p.setEstado(rs.getString("estado"));
              ListaPedido.add(p);
             }
             msg="Se ha listado los productos";
@@ -121,6 +120,7 @@ public class AdoPedido {
              p.setIdUsuario(rs.getInt("id_usuario"));
              p.setFechaIngreso(rs.getString("fecha_registro"));
              p.setNombreCliente(rs.getString("nom_cliente"));
+             p.setEstado(rs.getString("estado"));
              ListaPedido.add(p);
             }
             msg="Se ha listado los productos";
@@ -139,6 +139,24 @@ public class AdoPedido {
            }
           PreparedStatement psmt = cnx.prepareStatement(consulta);
           psmt.setString(1, NuevoNombre);
+          psmt.setInt(2, ID);
+          resultado  =  psmt.executeUpdate();
+           msg ="si se modifico";
+        }catch(SQLException e){
+             msg="Error al intentar modificar pedido " + e.getMessage();
+        }
+        
+        return (resultado!=0)?true:false;
+     }
+    public boolean ModificaEstadoPedidosPadre( String NuevoEstado, int ID ){
+        String consulta ="update pedidos_padre  set estado =?  where id_pedidos_padre = ?";
+        int resultado = 0;
+        try{
+          if(!BDconexion.estaconectado()){
+            BDconexion.conectar();
+           }
+          PreparedStatement psmt = cnx.prepareStatement(consulta);
+          psmt.setString(1, NuevoEstado);
           psmt.setInt(2, ID);
           resultado  =  psmt.executeUpdate();
            msg ="si se modifico";

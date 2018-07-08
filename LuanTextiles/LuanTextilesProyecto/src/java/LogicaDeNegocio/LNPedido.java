@@ -37,5 +37,8 @@ public class LNPedido {
     public boolean ModificaNomPedidoPadre(String NuevoNombre, int ID){
       return this.getDao().ModificaPedidosPadre(NuevoNombre, ID);
     }
+    public boolean ModificarEstado(String NuevoEstado, int ID){
+      return this.getDao().ModificaEstadoPedidosPadre(NuevoEstado, ID);
+    }
     
 }

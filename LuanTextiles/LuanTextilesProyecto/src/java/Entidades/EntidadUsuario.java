@@ -17,6 +17,8 @@ public class EntidadUsuario {
     private String telefono;
     private String puesto;
     private Integer id;
+    private int idAdmin;
+    private String estado;
     
 
     public EntidadUsuario() {
@@ -26,6 +28,19 @@ public class EntidadUsuario {
         this.usuario = usuario;
         this.password = password;
     }
+
+    public EntidadUsuario(String usuario, String password, String nombres, String apellidos, String telefono, String puesto, int idAdmin) {
+        this.usuario = usuario;
+        this.password = password;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.telefono = telefono;
+        this.puesto = puesto;
+        this.idAdmin = idAdmin;
+    }
+     
+   
+  
      
     public EntidadUsuario(String usuario, String password, String nombres, String apellidos, String telefono, String puesto, Integer id) {
         this.usuario = usuario;
@@ -99,5 +114,23 @@ public class EntidadUsuario {
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public int getIdAdmin() {
+        return idAdmin;
+    }
+
+    public void setIdAdmin(int idAdmin) {
+        this.idAdmin = idAdmin;
+    }
+
+    
     
 }

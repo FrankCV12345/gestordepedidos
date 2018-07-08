@@ -44,24 +44,25 @@ public class ServletListaryBuscar extends HttpServlet {
               out.println("<table>");
               
               for(EntidadPedidos p :lstpedido ){
-                   out.println("<tr><th>Nombre</th><th>ID pedido</th><th>Fecha de registro</th><th>Usuario</th></tr>");
+                   out.println("<tr><th>Nombre</th><th>ID pedido</th><th>Fecha de registro</th><th>Usuario</th><th>Estado</th></tr>");
                   out.println("<tr>");
-                out.println("<td><h3 id='nomcli'>"+p.getNombreCliente()+" </h3></td>");
+                out.println("<td><h3 id='nomcli' class='efecto'>"+p.getNombreCliente()+" </h3></td>");
                 out.println("<td><h3 id='IDPadre'>"+p.getIdPedido()+" </h3></td>");
                 out.println("<td><h3>"+p.getFechaIngreso()+" </h3></td>");
                 out.println("<td><h3>"+p.getIdUsuario()+" </h3></td>");
+                out.println("<td><h3 id='estado'>"+p.getEstado()+" </h3></td>");
                 out.println("</tr>");
             }
               out.println("<tr><th><h3>Categoria</h3></th><th><h3>Pre Unitario</h3></th><th><h3>Unidades</h3></th><th><h3>ID Detalle</h3></th><th><h3>ID Pedido</h3></th><th><h3>Fecha entrega</h3><th><h3>Detalles</h3> <th><h3>Sub Total</h3></th></th></th>");
             for(EntidadPedidoHijo p: lstpedidoHijo){
                 out.println("<tr>");
-                out.println("<td><h3 class='categoria'>"+p.getCategoria()+" </h3></td>");
-                out.println("<td><h3>"+p.getPreciounitario()+" </h3></td>");
-                out.println("<td><h3>"+p.getUnidades()+" </h3></td>");
+                out.println("<td><h3 class='categoria efecto'>"+p.getCategoria()+" </h3></td>");
+                out.println("<td><h3 class='PreUni efecto'>"+p.getPreciounitario()+" </h3></td>");
+                out.println("<td><h3 class='Uni efecto'>"+p.getUnidades()+" </h3></td>");
                 out.println("<td><h3 class='IdHijo'>"+p.getId_pedidos_hijo()+" </h3></td>");
                 out.println("<td><h3>"+p.getId_pedidos_padre()+" </h3></td>");
-                out.println("<td><h3>"+p.getFecha_entrega()+" </h3></td>");
-                out.println("<td><h5>"+p.getDetalles()+" </h5></td>");
+                out.println("<td><h3 class='fecha efecto' >"+p.getFecha_entrega()+" </h3></td>");
+                out.println("<td><h5 class='detalle efecto'>"+p.getDetalles()+" </h5></td>");
                 out.println("<td><h3>"+p.getSubtotal()+" </h3></td>");
                 out.println("</tr>");             
             }

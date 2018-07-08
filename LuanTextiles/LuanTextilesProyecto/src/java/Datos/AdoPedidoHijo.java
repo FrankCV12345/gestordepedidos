@@ -100,11 +100,11 @@ public class AdoPedidoHijo {
                      consulta =" update peidos_hijo set categoria =?  where id_pedidos_hijo = ?";
                      break;
              case 1: 
-                     consulta =" update peidos_hijo set unidades =?  where id_pedidos_hijo = ?";
+                     consulta ="{call modifica_precio(?,?)}";
                       campoInt  =Integer.parseInt(campos);
                      break;
              case 2: 
-                     consulta =" update peidos_hijo set precio_unitario =?  where id_pedidos_hijo = ?";
+                     consulta ="{call modifica_unidades(?,?)}";
                       campoDouble  =Double.parseDouble(campos);
                      break;
              case 3: 
@@ -119,21 +119,24 @@ public class AdoPedidoHijo {
              if(!BDconexion.estaconectado()){
                   BDconexion.conectar();
               }
-             PreparedStatement psmt = cnx.prepareStatement(consulta);
+             
               if(def ==0|| def==3 || def ==4){
+                  PreparedStatement psmt = cnx.prepareStatement(consulta);
                   psmt.setString(1, campos);
                   psmt.setInt(2, IDPedidoHijo);
                   resultado  =  psmt.executeUpdate();
                 }
               else if(def ==1){
-                  psmt.setInt(1, campoInt);
-                  psmt.setInt(2, IDPedidoHijo);
-                  resultado  =  psmt.executeUpdate();
+                  CallableStatement cst = cnx.prepareCall(consulta);
+                  cst.setInt(1, campoInt);
+                  cst.setInt(2, IDPedidoHijo);
+                  resultado  =  cst.executeUpdate();
                 }
               else if(def ==2){
-                  psmt.setDouble(1, campoDouble);
-                  psmt.setInt(2, IDPedidoHijo);
-                  resultado  =  psmt.executeUpdate();
+                  CallableStatement cst = cnx.prepareCall(consulta);
+                  cst.setDouble(1, campoDouble);
+                  cst.setInt(2, IDPedidoHijo);
+                  resultado  =  cst.executeUpdate();
                }
               
               

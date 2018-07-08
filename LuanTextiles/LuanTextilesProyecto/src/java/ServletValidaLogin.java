@@ -40,12 +40,7 @@ public class ServletValidaLogin extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletValidaLogin</title>");            
-            out.println("</head>");
-            out.println("<body>");
+          
             String UsusarioLogin = request.getParameter("usu");
             String PasswordLogin = request.getParameter("contra");
             LnUsuario lnu = new LnUsuario();
@@ -54,9 +49,13 @@ public class ServletValidaLogin extends HttpServlet {
                       
             
              if ( ResultUsu!=null ){
+                 if(ResultUsu.getEstado().equals("0")){
                HttpSession session = request.getSession();
                session.setAttribute("usuario",ResultUsu); 
-             response.sendRedirect("/LuanTextilesProyecto/MenuSistema.jsp");           
+                  response.sendRedirect("/LuanTextilesProyecto/MenuSistema.jsp"); 
+                 } else{
+                 response.sendRedirect("/LuanTextilesProyecto/Error.jsp");
+                 }
                /*out.println("<h1> DATOS  VALIDOS "+ResultUsu.getNombres()+"</h1>");   */        
              }
               else if (ResultUsu==null){
