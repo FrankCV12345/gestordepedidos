@@ -16,9 +16,21 @@ public class EntidadPedidoHijo {
     private String fecha_entrega;
     private String detalles;
     private double subtotal;
-      
+    private String estado;
     public EntidadPedidoHijo() {
     }
+
+    public EntidadPedidoHijo(String categoria, int unidades, int id_pedidos_padre, double preciounitario, String fecha_entrega, String detalles, double subtotal, String estado) {
+        this.categoria = categoria;
+        this.unidades = unidades;
+        this.id_pedidos_padre = id_pedidos_padre;
+        this.preciounitario = preciounitario;
+        this.fecha_entrega = fecha_entrega;
+        this.detalles = detalles;
+        this.subtotal = subtotal;
+        this.estado = estado;
+    }
+    
 
     public EntidadPedidoHijo(String categoria, int unidades, int id_pedidos_padre, double preciounitario, String fecha_entrega, String detalles, double subtotal) {
         this.categoria = categoria;
@@ -112,6 +124,14 @@ public class EntidadPedidoHijo {
 
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
     
     

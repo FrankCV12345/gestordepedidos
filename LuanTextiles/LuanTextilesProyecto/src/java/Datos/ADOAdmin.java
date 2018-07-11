@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package Datos;
-import Entidades.EntidadAdministrador;
-import Entidades.EntidadUsuario;
+import Entidades.*;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
@@ -217,6 +216,62 @@ public class ADOAdmin {
      }
             return (result!=0)?true:false;
     }
-   
+    public List<EntidadListaVentasUsuario> ListaVentasPorUsuario( int id_user){
+      String consulta ="select  id_pedidos_padre,categoria,unidades,precio_unitario,detalle,sub_total  from peidos_hijo where id_pedidos_padre in (select id_pedidos_padre  from pedidos_padre where id_usuario = ?)";
+      List<EntidadListaVentasUsuario> listaVentas = new ArrayList<EntidadListaVentasUsuario>();
+      EntidadListaVentasUsuario ventas ;
+      try{
+       if(!BDconexion.estaconectado()){
+           BDconexion.conectar();
+         }
+       PreparedStatement psmt = cnx.prepareStatement(consulta);
+       psmt.setInt(1, id_user);
+       ResultSet rs = psmt.executeQuery();
+       while(rs.next()){
+         ventas = new EntidadListaVentasUsuario();
+         ventas.setId_padre(rs.getInt("id_pedidos_padre"));
+         ventas.setCategoria(rs.getString("categoria"));
+         ventas.setUnidades(rs.getInt("unidades"));
+         ventas.setPrecio_unitario(rs.getDouble("precio_unitario"));
+         ventas.setDetalle(rs.getString("detalle"));
+         ventas.setSubTotal(rs.getDouble("sub_total"));
+         listaVentas.add(ventas);
+       }
+       
+      }catch(SQLException e){
+          msg="no se pudo ejecutar"+e;
+      }
+      return listaVentas;
+    }
+    public List<EntidadVentasPorFecha> ListaPorfecha( String fecha){
+      String consulta ="select id_pedidos_padre,categoria,unidades,precio_unitario,fecha_entrega,detalle,sub_total,estado from peidos_hijo where id_pedidos_padre in  (select  id_pedidos_padre from pedidos_padre where  fecha_registro >=?)";
+        List<EntidadVentasPorFecha> lista = new ArrayList<EntidadVentasPorFecha>();
+        EntidadVentasPorFecha venta ;
+      try{
+          if(!BDconexion.estaconectado()){
+             BDconexion.conectar();
+          }
+         PreparedStatement psmt = cnx.prepareStatement(consulta);
+         psmt.setString(1, fecha);
+         ResultSet rs = psmt.executeQuery();
+         while(rs.next()){
+             venta = new EntidadVentasPorFecha();
+             venta.setIdpadre(rs.getInt("id_pedidos_padre"));
+             venta.setCategoria(rs.getString("categoria"));
+             venta.setUnidades(rs.getInt("unidades"));
+             venta.setPrecio_unitario(rs.getDouble("precio_unitario"));
+             venta.setFecha_entrega(rs.getString("fecha_entrega"));
+             venta.setDetalle(rs.getString("detalle"));
+             venta.setEstado(rs.getString("estado"));
+             venta.setSubTotal(rs.getDouble("sub_total"));
+             lista.add(venta);
+             msg=" si tiene datos";
+         }
+      
+      }catch(SQLException e){
+          msg="no se pudo ejecutar"+e;
+      }
+      return lista;
+    }
     
 }

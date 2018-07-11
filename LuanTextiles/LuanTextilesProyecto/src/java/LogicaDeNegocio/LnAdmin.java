@@ -5,7 +5,7 @@
  */
 package LogicaDeNegocio;
 import Datos.ADOAdmin;
-import Entidades.EntidadAdministrador;
+import Entidades.*;
 import Entidades.EntidadUsuario;
 import java.util.List;
 /**
@@ -42,5 +42,11 @@ public class LnAdmin {
     }
     public boolean EliminarUser( int idUser){
      return this.getLnadmin().EliminaUser(idUser);
+    }
+    public  List<EntidadListaVentasUsuario> ListaVentasPorUsuario(int id_usuario){
+      return this.getLnadmin().ListaVentasPorUsuario(id_usuario);
+    }
+    public  List<EntidadVentasPorFecha> ListaVentasPorFecha(String fecha){
+      return this.getLnadmin().ListaPorfecha(fecha);
     }
 }

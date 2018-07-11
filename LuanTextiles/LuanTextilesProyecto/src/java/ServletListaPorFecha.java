@@ -11,17 +11,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
 import Entidades.*;
 import LogicaDeNegocio.*;
-import java.util.List;
 import static Datos.BDconexion.msg;
+import java.util.List;
 /**
  *
  * @author SARA
  */
-@WebServlet(urlPatterns = {"/prueba"})
-public class prueba extends HttpServlet {
+@WebServlet(urlPatterns = {"/ServletListaPorFecha"})
+public class ServletListaPorFecha extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,30 +35,38 @@ public class prueba extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-             int  idUsus = 5;
-            LnAdmin ln = new LnAdmin();
-             List<EntidadListaVentasUsuario> listaVEntas =  ln.ListaVentasPorUsuario(idUsus);
-             Double total =0.0;
-             out.println("<table>");
-             out.println("<tr><td>ID PEDIDO</td><td>CATEGORIA</td><td>UNIDADES</td><td>PRECIO UNITARIO</td><td>DETALLES</td><td>SUBTOTAL</td></tr>");
-              for(EntidadListaVentasUsuario v :listaVEntas ){
-                  out.println("<tr>");
-                  out.println("<td>"+v.getId_padre()+"</td>");
-                  out.println("<td>"+v.getCategoria()+"</td>");
-                  out.println("<td>"+v.getUnidades()+"</td>");
-                  out.println("<td>"+v.getPrecio_unitario()+"</td>");
-                  out.println("<td>"+v.getDetalle()+"</td>");
-                  out.println("<td>"+v.getSubTotal()+"</td>");
-                  out.println("</tr>");
-                  total =total +v.getSubTotal();
+            /* TODO output your page here. You may use following sample code. */
+           
+                
+                try{
+                    String  fecha = request.getParameter("fecha");
+               LnAdmin ln = new LnAdmin();
+               
+              List<EntidadVentasPorFecha> lista = ln.ListaVentasPorFecha(fecha);
+              double total =0.0;
+                 out.println("<table>");
+                  out.println("<tr><th>ID PEDIDO</th><th>CATEGORIA</th><th>DETALLE</th><th>FECHA ENTREGA</th><th>UNIDADES</th><th>PRECIO UNIT</th><th>ESTADO</th><th>SUB TOTAL</th></tr>");
+              for(EntidadVentasPorFecha v :lista ){
+                   out.println("<tr>");
+                    out.println("<td>"+v.getIdpadre()+"</td>"); 
+                    out.println("<td>"+v.getCategoria()+"</td>");
+                    out.println("<td>"+v.getDetalle()+"</td>");
+                    out.println("<td>"+ v.getFecha_entrega().substring(0, 10)+"</td>");
+                    out.println("<td>"+v.getUnidades()+"</td>");
+                    out.println("<td>"+v.getPrecio_unitario()+"</td>");
+                    out.println("<td>"+v.getEstado()+"</td>");
+                    out.println("<td>"+v.getSubTotal()+"</td>");
+                   out.println("</tr>"); 
+                   total = total +v.getSubTotal();
               }
               out.println("</table>");
-              out.println("<label  name='total' class='lbl-A'> TOTAL S/"+total+"</label>");
-            /*
-            out.println("</body>");
-            out.println("</html>");*/
-          
-    }
+              out.println("<label style='color:black;padding:2px;'> TOTAL S/"+total+"</label>");
+           
+                }catch(Exception e){
+                   out.println(e);
+                }
+           
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -61,7 +61,7 @@ public class ServletRegistrar extends HttpServlet {
                 LnPedidoHijo lnphijo = new LnPedidoHijo();
                 lnphijo.Registrar(pedido_hijo);
                }
-                  out.println("si se registro");
+                  out.println("si se registro el id de su pedido es :"+Ultimo);
              }
              else{
                  out.println(" no se registro");

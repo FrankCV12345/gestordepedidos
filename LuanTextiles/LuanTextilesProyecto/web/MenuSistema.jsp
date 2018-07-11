@@ -90,6 +90,12 @@
                             $("#caja-pedido").html(data); 
                        });
                     });
+                    $("#btnBuscarB").click(function(){
+                    var RegistroPadreID = $("#IdPedidoPadreB").val();  
+                    $.get("/LuanTextilesProyecto/ServletListaryBuscar",{RegistroPadreID},function(data){
+                            $("#caja-pedidoB").html(data); 
+                       });
+                    });
                     
                 $("body").on('click','#nomcli',function(){
                     var  nombre = prompt("Ingrese nuevo nombre", "nuevo nombre");
@@ -119,19 +125,10 @@
                     });
                 $("body").on('click',".categoria",function(){
                       var campo1 = prompt("ingrese  nueva categoria","nueva categoria");
-                      var categoria = $(this).text();
-                      var elemtsCategoria =  $(".categoria");
-                      var argCategoria = [];
-                      var b;
-                      var idHijo = $(".IdHijo");
-                      var valorIdHijo ;
                       var definidor = 0;
-                      for(var i = 1 ; i<= elemtsCategoria.length; i++){
-                          var n =  i-1;
-                          argCategoria[n] = elemtsCategoria[n].innerHTML;
-                      }
-                      b = argCategoria.indexOf(categoria);
-                      valorIdHijo = idHijo[b].innerText;
+                     var indice = $(".categoria").index(this) ;
+                      var valorIdHijo = $(".IdHijo");
+                      valorIdHijo =   valorIdHijo[indice].innerText;
                        if(!isNaN(campo1)){
                            alert("no ingreso una categoria ");
                         }
@@ -145,19 +142,10 @@
                 
                   $("body").on('click',".PreUni",function(){
                       var campo1 = prompt("ingrese nuevo precio","nuevo precio unitario");
-                      var precio = $(this).text();
-                      var elemtsPrecio =  $(".PreUni");
-                      var argPrecio = [];
-                      var b;
-                      var idHijo = $(".IdHijo");
-                      var valorIdHijo ;
-                      var definidor = 1;
-                      for(var i = 1 ; i<= elemtsPrecio.length; i++){
-                          var n =  i-1;
-                          argPrecio[n] = elemtsPrecio[n].innerHTML;
-                      }
-                      b = argPrecio.indexOf(precio);
-                      valorIdHijo = idHijo[b].innerText;
+                       var definidor = 1;
+                      var indice = $(".PreUni").index(this) ;
+                      var valorIdHijo = $(".IdHijo");
+                      valorIdHijo =   valorIdHijo[indice].innerText;
                       if(isNaN(campo1)){
                            alert("no ingreso un numero   ");
                         }
@@ -170,19 +158,10 @@
                 });
                 $("body").on('click',".Uni",function(){
                       var campo1 = prompt("ingrese unidades","unidades");
-                      var precio = $(this).text();
-                      var elemtsPrecio =  $(".Uni");
-                      var argPrecio = [];
-                      var b;
-                      var idHijo = $(".IdHijo");
-                      var valorIdHijo ;
-                      var definidor = 2;
-                      for(var i = 1 ; i<= elemtsPrecio.length; i++){
-                          var n =  i-1;
-                          argPrecio[n] = elemtsPrecio[n].innerHTML;
-                      }
-                      b = argPrecio.indexOf(precio);
-                      valorIdHijo = idHijo[b].innerText;
+                      var definidor =2;
+                      var indice = $(".Uni").index(this) ;
+                      var valorIdHijo = $(".IdHijo");
+                      valorIdHijo =   valorIdHijo[indice].innerText;
                       if(isNaN(campo1)){
                            alert("no un numero");
                         }
@@ -195,19 +174,10 @@
                 });
                  $("body").on('click',".fecha",function(){
                       var campo1 = prompt("ingrese nueva fecha","DD/MM/AAAA");
-                      var precio = $(this).text();
-                      var elemtsPrecio =  $(".fecha");
-                      var argPrecio = [];
-                      var b;
-                      var idHijo = $(".IdHijo");
-                      var valorIdHijo ;
-                      var definidor = 3;
-                      for(var i = 1 ; i<= elemtsPrecio.length; i++){
-                          var n =  i-1;
-                          argPrecio[n] = elemtsPrecio[n].innerHTML;
-                      }
-                      b = argPrecio.indexOf(precio);
-                      valorIdHijo = idHijo[b].innerText;
+                       var definidor = 3;
+                      var indice = $(".fecha").index(this) ;
+                      var valorIdHijo = $(".IdHijo");
+                      valorIdHijo =   valorIdHijo[indice].innerText;
                       if(campo1 === null){
                            alert("no ingreso una fecha");
                         }
@@ -220,19 +190,10 @@
                 });
                 $("body").on('click',".detalle",function(){
                       var campo1 = prompt("ingrese nuevo detalle","detalle");
-                      var precio = $(this).text();
-                      var elemtsPrecio =  $(".detalle");
-                      var argPrecio = [];
-                      var b;
-                      var idHijo = $(".IdHijo");
-                      var valorIdHijo ;
                       var definidor = 4;
-                      for(var i = 1 ; i<= elemtsPrecio.length; i++){
-                          var n =  i-1;
-                          argPrecio[n] = elemtsPrecio[n].innerHTML;
-                      }
-                      b = argPrecio.indexOf(precio);
-                      valorIdHijo = idHijo[b].innerText;
+                      var indice = $(".detalle").index(this) ;
+                      var valorIdHijo = $(".IdHijo");
+                      valorIdHijo =   valorIdHijo[indice].innerText;
                       if(campo1 === null){
                            alert("no ingreso un detalle");
                         }
@@ -242,6 +203,23 @@
                            location.reload();
                       });
                       }
+                });
+                $("body").on("click",".estadoP",function(){
+                    var campo1 = prompt("ingrese estado 0/1","0/1");
+                    var indice = $(".estadoP").index(this) ;
+                    var valorIdHijo = $(".IdHijo");
+                    valorIdHijo =   valorIdHijo[indice].innerText;
+                    var definidor = 5;
+                    if(isNaN(campo1)  || campo1 >1 || campo1 <0){
+                        alert(" no valido");
+                    }else{
+                        $.get("/LuanTextilesProyecto/ServletModificaPedidohijo",{definidor ,valorIdHijo,campo1},function(data){
+                          alert(data);
+                           location.reload();
+                      });
+                    }
+                    
+                   
                 });
                    
                });
@@ -295,6 +273,10 @@
                        ventana Modificar
                        -->
                        <jsp:include page="frmModificar.jsp"/>  
+                       <!--
+                       ventana bsucar
+                       -->
+                       <jsp:include page="frmBuscar.jsp"/>  
                         <!--
                        ventana Eliminar
                        -->

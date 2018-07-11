@@ -11,17 +11,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
 import Entidades.*;
 import LogicaDeNegocio.*;
 import java.util.List;
-import static Datos.BDconexion.msg;
 /**
  *
  * @author SARA
  */
-@WebServlet(urlPatterns = {"/prueba"})
-public class prueba extends HttpServlet {
+@WebServlet(urlPatterns = {"/ServletListaPedidosPorUsuario"})
+public class ServletListaPedidosPorUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,12 +34,14 @@ public class prueba extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-             int  idUsus = 5;
+            /* TODO output your page here. You may use following sample code. */
+            try{
+                int  idUsus = Integer.parseInt(request.getParameter("id_usu"));
             LnAdmin ln = new LnAdmin();
              List<EntidadListaVentasUsuario> listaVEntas =  ln.ListaVentasPorUsuario(idUsus);
              Double total =0.0;
              out.println("<table>");
-             out.println("<tr><td>ID PEDIDO</td><td>CATEGORIA</td><td>UNIDADES</td><td>PRECIO UNITARIO</td><td>DETALLES</td><td>SUBTOTAL</td></tr>");
+             out.println("<tr><th>ID PEDIDO</th><th>CATEGORIA</th><th>UNIDADES</th><th>PRECIO UNITARIO</th><th>DETALLES</th><th>SUBTOTAL</th></tr>");
               for(EntidadListaVentasUsuario v :listaVEntas ){
                   out.println("<tr>");
                   out.println("<td>"+v.getId_padre()+"</td>");
@@ -54,12 +54,11 @@ public class prueba extends HttpServlet {
                   total =total +v.getSubTotal();
               }
               out.println("</table>");
-              out.println("<label  name='total' class='lbl-A'> TOTAL S/"+total+"</label>");
-            /*
-            out.println("</body>");
-            out.println("</html>");*/
-          
-    }
+              out.println("<label style='color:black;padding:2px;'> TOTAL S/"+total+"</label>");
+            }catch(Exception e){
+                out.println(e);
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

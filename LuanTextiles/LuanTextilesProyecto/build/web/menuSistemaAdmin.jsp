@@ -125,6 +125,27 @@
                           alert(data);
                      });
                  });
+                 $("#busVentPorUsu").click(function(){
+                     var id_usu = $("#idUsuVent").val();
+                      id_usu = parseInt(id_usu);
+                      $.get("/LuanTextilesProyecto/ServletListaPedidosPorUsuario",{id_usu},function(data){
+                          $("#contenedor-lista-ventas-vendedor").html(data);
+                      });
+                 });
+                 
+                 
+                 $("#busVentPorfecha").click(function(){
+                     var fecha = $("#fechaVent").val();
+                       function convertDateFormat(string) {
+                       var info = string.split('-');
+                      return info[2] + '/' + info[1] + '/' + info[0];
+                            }
+                           fecha = convertDateFormat(fecha);
+                    
+                      $.get("/LuanTextilesProyecto/ServletListaPorFecha",{fecha},function(data){
+                          $("#contenedor-lista-ventas-fecha").html(data);
+                      });
+                 });
                    
                });
                
@@ -142,8 +163,37 @@
                 <jsp:include page="menuAdmin.jsp"/> 
                 <div id="contenido">
                     <div class="contenido-hijo"> 
-                        
-                        
+                        <div class="cont-opcionesAdmin">
+                            <div class="frm-admin">
+                              <div class="opcionesAdmin">
+                               BUSCAR VENTAS POR VENDEDOR
+                              </div>
+                                <form style="text-align: center;">
+                                   
+                                    <input type="number" placeholder="inrese codigo" class="txtBuscaVent" id="idUsuVent" >
+                                    <input type="button" value="BUSCAR" class="btn" id="busVentPorUsu">
+                                  
+                                </form>
+                                <div id="contenedor-lista-ventas-vendedor">
+                                    
+                                </div>
+                            </div>
+                            <div class="frm-admin">
+                              <div class="opcionesAdmin">
+                               VER VENTAS POR FECHA
+                              </div>
+                                <form style="text-align: center;">
+                                   
+                                    <input type="date" placeholder="inrese codigo" class="txtBuscaFecha" id="fechaVent" >
+                                    <input type="button" value="BUSCAR" class="btn" id="busVentPorfecha">
+                                  
+                                </form>
+                                <div id="contenedor-lista-ventas-fecha">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                       
                    <div class="padre-ventanas" >
                        <!--
                        ventana Registrar

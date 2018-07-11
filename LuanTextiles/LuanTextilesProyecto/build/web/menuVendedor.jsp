@@ -21,9 +21,9 @@
                     </div>                        
                 </div> 
                 <div class="items-menu-sistema">
-                    <div>
+                    <div onclick="Despliega('ventana-buscar','padre-ventanas')">
                         <!--BUSCAR PEDIDO-->
-                        <a href="listar.jsp"><img src="img/logos/002-search.png" alt=""/></a>
+                        <img src="img/logos/002-search.png" alt=""/>
                     </div>                        
                 </div> 
                 <div class="items-menu-sistema">

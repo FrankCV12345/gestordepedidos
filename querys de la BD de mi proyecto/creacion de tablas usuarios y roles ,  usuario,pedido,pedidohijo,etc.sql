@@ -59,9 +59,9 @@ fecha_entrega date,
 detalle varchar(500),
 Sub_total decimal(8,2),
 foreign key(id_pedidos_padre)
-references   pedidos_padre(id_pedidos_padre)   
+references   pedidos_padre(id_pedidos_padre)  ,
+estado char(1) default '0' 
 );
-
 /*INSERTO DATOS USUARIOS */
 insert into usuario(id_usuario,nombres,apellidos,puesto,telefono,nom_usuario,contrasenia,estado,idadministrador)
 values(id_usuario.nextval,'frank','campos vilchez','administrador','990418363','frankcv','entrada3','0',1);
@@ -72,6 +72,7 @@ values(id_usuario.nextval,'lucas','ramos  peres','operario','990718363','lucasrp
 insert into usuario(id_usuario,nombres,apellidos,puesto,telefono,nom_usuario,contrasenia,estado,idadministrador)
 values(id_usuario.nextval,'juana','lopez rojas','operario','990418383','juanalr','entrada3','0',1);
 select * from usuario;
+delete from usuario where id_usuario > 5;
 
 /*INSERTO ADMINISTRADORES*/
 insert into administradores values(seq_id_admin.nextval,'maria',' aguirre aguirre','1','990418383','mariaagi','entrada3');
@@ -102,8 +103,30 @@ end modifica_precio;
 begin 
    modifica_unidades(21,91);
   end;
-  select * from peidos_hijo;
+  
+create or replace procedure Prc_ListaVentasPorUsuario(id int, Lst OUT SYS_REFCURSOR)
+ is 
+ begin
+     OPEN Lst FOR
+  select  id_pedidos_padre,categoria,unidades,precio_unitario,detalle,sub_total  from peidos_hijo where id_pedidos_padre 
+ in (select id_pedidos_padre  from pedidos_padre where id_usuario = id);
+END;
+
+ create or replace procedure Prc_ListaTotalVentas(fecha date ,Lst OUT SYS_REFCURSOR )
+ is
+ begin
+   open Lst for
+   select * from peidos_hijo where id_pedidos_padre in  (select  id_pedidos_padre from pedidos_padre where  fecha_registro >= fecha);
+     end;
+     
+    
+
 
 /* PROBANDO*/
+ 
+
+ 
+  
+  
 
 

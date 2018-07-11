@@ -20,7 +20,7 @@ public class AdoPedidoHijo {
     public AdoPedidoHijo() {
     }
     public  boolean registrar(EntidadPedidoHijo p){
-        String consulta = "insert into peidos_hijo values(id_pedido_hijo.nextval,?,?,?,?,?,?,?)";
+        String consulta = "insert into peidos_hijo values(id_pedido_hijo.nextval,?,?,?,?,?,?,?,'0')";
         int resultado = 0;
         try{
             if(!BDconexion.estaconectado()){
@@ -82,6 +82,7 @@ public class AdoPedidoHijo {
             PH.setFecha_entrega(rs.getString("fecha_entrega"));
             PH.setDetalles(rs.getString("detalle"));
             PH.setSubtotal(rs.getInt("Sub_total"));
+            PH.setEstado(rs.getString("estado"));
            ListaPedidoHijo.add(PH);
          }
        }catch(SQLException e){
@@ -113,6 +114,9 @@ public class AdoPedidoHijo {
              case 4: 
                      consulta =" update peidos_hijo set detalle =?  where id_pedidos_hijo = ?";
                      break;
+             case 5: 
+                     consulta =" update peidos_hijo set estado =?  where id_pedidos_hijo = ?";
+                     break;
              default: msg="no se ingresó nigun def";break;
          }
           try{
@@ -120,7 +124,7 @@ public class AdoPedidoHijo {
                   BDconexion.conectar();
               }
              
-              if(def ==0|| def==3 || def ==4){
+              if(def ==0|| def==3 || def ==4 || def==5){
                   PreparedStatement psmt = cnx.prepareStatement(consulta);
                   psmt.setString(1, campos);
                   psmt.setInt(2, IDPedidoHijo);

@@ -53,7 +53,7 @@ public class ServletListaryBuscar extends HttpServlet {
                 out.println("<td><h3 id='estado'>"+p.getEstado()+" </h3></td>");
                 out.println("</tr>");
             }
-              out.println("<tr><th><h3>Categoria</h3></th><th><h3>Pre Unitario</h3></th><th><h3>Unidades</h3></th><th><h3>ID Detalle</h3></th><th><h3>ID Pedido</h3></th><th><h3>Fecha entrega</h3><th><h3>Detalles</h3> <th><h3>Sub Total</h3></th></th></th>");
+              out.println("<tr><th><h3>Categoria</h3></th><th><h3>Pre Unitario</h3></th><th><h3>Unidades</h3></th><th><h3>ID Detalle</h3></th><th><h3>ID Pedido</h3></th><th><h3>Fecha entrega</h3><th><h3>Detalles</h3></th><th><h3>Sub Total</h3></th><th><h3>Estado</h3></th></tr>");
             for(EntidadPedidoHijo p: lstpedidoHijo){
                 out.println("<tr>");
                 out.println("<td><h3 class='categoria efecto'>"+p.getCategoria()+" </h3></td>");
@@ -64,6 +64,11 @@ public class ServletListaryBuscar extends HttpServlet {
                 out.println("<td><h3 class='fecha efecto' >"+p.getFecha_entrega()+" </h3></td>");
                 out.println("<td><h5 class='detalle efecto'>"+p.getDetalles()+" </h5></td>");
                 out.println("<td><h3>"+p.getSubtotal()+" </h3></td>");
+                 if(p.getEstado().equals("1")){
+                out.println("<td><h3 class='estadoP efecto' style='background-color:#4267B2;'>"+p.getEstado()+" </h3></td>");
+                  }else{
+                  out.println("<td><h3 class='estadoP efecto'>"+p.getEstado()+" </h3></td>");
+                 }
                 out.println("</tr>");             
             }
              out.println("</table>");
