@@ -36,9 +36,13 @@ public class ServletModificaPedidohijo extends HttpServlet {
             int idhijo =Integer.parseInt(request.getParameter("valorIdHijo"));
             int definidor =Integer.parseInt( request.getParameter("definidor"));
             String campos = request.getParameter("campo1");
+             if(campos.equals("")){
+                  out.println("no ingreso un campo");
+             }else{
               LnPedidoHijo lnph = new LnPedidoHijo();
               boolean result = lnph.ModificaPedidoHijo(idhijo, definidor,campos);
               out.println(result);
+        }
         }
     }
 

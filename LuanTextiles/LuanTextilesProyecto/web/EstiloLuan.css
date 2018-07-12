@@ -202,7 +202,9 @@ box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
     text-align: center;
 }
 .cont-opcionesAdmin{
-    overflow: auto
+    overflow: auto;
+       float: left;
+       width: 100%;
 }
 .frm-admin{
     box-sizing: border-box;
@@ -221,7 +223,7 @@ box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
     background-color:rgba(0,0,0,0.8);
     color: black;
     position:absolute;
-    z-index: 2;
+    z-index: 5;
     display: none;
     text-align: center;
 }

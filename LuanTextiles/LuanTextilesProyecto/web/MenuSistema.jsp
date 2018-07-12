@@ -210,6 +210,7 @@
                     var valorIdHijo = $(".IdHijo");
                     valorIdHijo =   valorIdHijo[indice].innerText;
                     var definidor = 5;
+                   
                     if(isNaN(campo1)  || campo1 >1 || campo1 <0){
                         alert(" no valido");
                     }else{

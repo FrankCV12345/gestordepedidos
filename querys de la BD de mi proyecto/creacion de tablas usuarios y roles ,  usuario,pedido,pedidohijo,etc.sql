@@ -99,10 +99,7 @@ begin
    where id_pedidos_hijo =idhijo;
    commit;
 end modifica_precio;
-
-begin 
-   modifica_unidades(21,91);
-  end;
+  
   
 create or replace procedure Prc_ListaVentasPorUsuario(id int, Lst OUT SYS_REFCURSOR)
  is 
@@ -111,6 +108,7 @@ create or replace procedure Prc_ListaVentasPorUsuario(id int, Lst OUT SYS_REFCUR
   select  id_pedidos_padre,categoria,unidades,precio_unitario,detalle,sub_total  from peidos_hijo where id_pedidos_padre 
  in (select id_pedidos_padre  from pedidos_padre where id_usuario = id);
 END;
+
 
  create or replace procedure Prc_ListaTotalVentas(fecha date ,Lst OUT SYS_REFCURSOR )
  is
@@ -123,10 +121,8 @@ END;
 
 
 /* PROBANDO*/
- 
-
- 
-  
+select  * from peidos_hijo where id_pedidos_hijo = 118
+update peidos_hijo set estado = 1 where id_pedidos_hijo = 118;
   
 
 

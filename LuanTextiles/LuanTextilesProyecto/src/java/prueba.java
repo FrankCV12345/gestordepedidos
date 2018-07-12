@@ -15,6 +15,7 @@ import java.util.Date;
 import Entidades.*;
 import LogicaDeNegocio.*;
 import java.util.List;
+import Datos.ADOAdmin;
 import static Datos.BDconexion.msg;
 /**
  *
@@ -36,25 +37,7 @@ public class prueba extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-             int  idUsus = 5;
-            LnAdmin ln = new LnAdmin();
-             List<EntidadListaVentasUsuario> listaVEntas =  ln.ListaVentasPorUsuario(idUsus);
-             Double total =0.0;
-             out.println("<table>");
-             out.println("<tr><td>ID PEDIDO</td><td>CATEGORIA</td><td>UNIDADES</td><td>PRECIO UNITARIO</td><td>DETALLES</td><td>SUBTOTAL</td></tr>");
-              for(EntidadListaVentasUsuario v :listaVEntas ){
-                  out.println("<tr>");
-                  out.println("<td>"+v.getId_padre()+"</td>");
-                  out.println("<td>"+v.getCategoria()+"</td>");
-                  out.println("<td>"+v.getUnidades()+"</td>");
-                  out.println("<td>"+v.getPrecio_unitario()+"</td>");
-                  out.println("<td>"+v.getDetalle()+"</td>");
-                  out.println("<td>"+v.getSubTotal()+"</td>");
-                  out.println("</tr>");
-                  total =total +v.getSubTotal();
-              }
-              out.println("</table>");
-              out.println("<label  name='total' class='lbl-A'> TOTAL S/"+total+"</label>");
+            
             /*
             out.println("</body>");
             out.println("</html>");*/

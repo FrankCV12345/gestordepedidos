@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import Entidades.*;
 import LogicaDeNegocio.*;
 import java.util.List;
+import static Datos.BDconexion.msg;
 /**
  *
  * @author SARA
@@ -56,7 +57,7 @@ public class ServletListaPedidosPorUsuario extends HttpServlet {
               out.println("</table>");
               out.println("<label style='color:black;padding:2px;'> TOTAL S/"+total+"</label>");
             }catch(Exception e){
-                out.println(e);
+                out.println(e+msg);
             }
         }
     }

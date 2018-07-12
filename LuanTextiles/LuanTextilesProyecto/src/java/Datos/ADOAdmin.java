@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.ArrayList;
 import static Datos.BDconexion.cnx;
 import static Datos.BDconexion.msg;
+import java.sql.CallableStatement;
+import oracle.jdbc.internal.OracleTypes;
 /**
  *
  * @author SARA
@@ -217,16 +219,19 @@ public class ADOAdmin {
             return (result!=0)?true:false;
     }
     public List<EntidadListaVentasUsuario> ListaVentasPorUsuario( int id_user){
-      String consulta ="select  id_pedidos_padre,categoria,unidades,precio_unitario,detalle,sub_total  from peidos_hijo where id_pedidos_padre in (select id_pedidos_padre  from pedidos_padre where id_usuario = ?)";
+      String consulta ="{call Prc_ListaVentasPorUsuario(?,?) }";
       List<EntidadListaVentasUsuario> listaVentas = new ArrayList<EntidadListaVentasUsuario>();
       EntidadListaVentasUsuario ventas ;
       try{
        if(!BDconexion.estaconectado()){
            BDconexion.conectar();
          }
-       PreparedStatement psmt = cnx.prepareStatement(consulta);
-       psmt.setInt(1, id_user);
-       ResultSet rs = psmt.executeQuery();
+       CallableStatement cst = cnx.prepareCall(consulta);
+       cst.setInt(1, id_user);
+       cst.registerOutParameter(2, OracleTypes.CURSOR);
+       
+       cst.execute();
+       ResultSet rs = (ResultSet) cst.getObject(2);
        while(rs.next()){
          ventas = new EntidadListaVentasUsuario();
          ventas.setId_padre(rs.getInt("id_pedidos_padre"));
@@ -236,42 +241,45 @@ public class ADOAdmin {
          ventas.setDetalle(rs.getString("detalle"));
          ventas.setSubTotal(rs.getDouble("sub_total"));
          listaVentas.add(ventas);
+         msg="si";
        }
        
       }catch(SQLException e){
-          msg="no se pudo ejecutar"+e;
+          msg="no se pudo ejecutar "+e;
       }
       return listaVentas;
     }
     public List<EntidadVentasPorFecha> ListaPorfecha( String fecha){
-      String consulta ="select id_pedidos_padre,categoria,unidades,precio_unitario,fecha_entrega,detalle,sub_total,estado from peidos_hijo where id_pedidos_padre in  (select  id_pedidos_padre from pedidos_padre where  fecha_registro >=?)";
-        List<EntidadVentasPorFecha> lista = new ArrayList<EntidadVentasPorFecha>();
-        EntidadVentasPorFecha venta ;
-      try{
-          if(!BDconexion.estaconectado()){
-             BDconexion.conectar();
-          }
-         PreparedStatement psmt = cnx.prepareStatement(consulta);
-         psmt.setString(1, fecha);
-         ResultSet rs = psmt.executeQuery();
-         while(rs.next()){
-             venta = new EntidadVentasPorFecha();
-             venta.setIdpadre(rs.getInt("id_pedidos_padre"));
-             venta.setCategoria(rs.getString("categoria"));
-             venta.setUnidades(rs.getInt("unidades"));
-             venta.setPrecio_unitario(rs.getDouble("precio_unitario"));
-             venta.setFecha_entrega(rs.getString("fecha_entrega"));
-             venta.setDetalle(rs.getString("detalle"));
-             venta.setEstado(rs.getString("estado"));
-             venta.setSubTotal(rs.getDouble("sub_total"));
-             lista.add(venta);
-             msg=" si tiene datos";
-         }
-      
-      }catch(SQLException e){
-          msg="no se pudo ejecutar"+e;
-      }
-      return lista;
+      String consulta ="{call Prc_ListaTotalVentas(?,?)}";
+        List<EntidadVentasPorFecha> lstvent = new ArrayList<EntidadVentasPorFecha> ();
+        EntidadVentasPorFecha vta;
+        try{
+            if(!BDconexion.estaconectado()){
+                BDconexion.conectar();
+            }
+            CallableStatement cst = cnx.prepareCall(consulta);
+            cst.setString(1, fecha);
+            cst.registerOutParameter(2,OracleTypes.CURSOR);
+            cst.execute();
+            ResultSet rs = (ResultSet) cst.getObject(2);
+            while(rs.next()){
+                vta= new EntidadVentasPorFecha();
+                vta.setIdpadre(rs.getInt("id_pedidos_padre"));
+             vta.setCategoria(rs.getString("categoria"));
+             vta.setUnidades(rs.getInt("unidades"));
+             vta.setPrecio_unitario(rs.getDouble("precio_unitario"));
+             vta.setFecha_entrega(rs.getString("fecha_entrega"));
+             vta.setDetalle(rs.getString("detalle"));
+             vta.setEstado(rs.getString("estado"));
+             vta.setSubTotal(rs.getDouble("sub_total"));
+             lstvent.add(vta);
+            }
+        }catch(SQLException e){
+          msg=" no se ejecuto "+e;
+        }
+     return lstvent;
     }
+    
+   
     
 }

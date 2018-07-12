@@ -6,7 +6,9 @@
                     <%  EntidadUsuario usuario = (EntidadUsuario)session.getAttribute("usuario");
                         out.println("<h4>"+usuario.getNombres()+"</h4>");  %>
                      </div> 
-                     <div id="cerrarsesion"><a href="cerrar.jsp">CERRAR SESIÓN </a></div>
+                     <div id="cerrarsesion">
+                         <a href="cerrar.jsp">CERRAR SESIÓN </a>                         
+                     </div>
                 </div>
                 <div class="items-menu-sistema">
                     <div onclick="Despliega('ventana-registrar','padre-ventanas')">

@@ -35,10 +35,13 @@ public class ServletCambiaEstadoPedido extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
            String estado = request.getParameter("estado");
                 int idPadre = Integer.parseInt(request.getParameter("IdPadre"));
-         
+                   if(estado.equals("")){
+                  out.println("no ingreso un campo");
+                    }else{
               LNPedido lnp = new LNPedido();
               boolean result = lnp.ModificarEstado(estado, idPadre);
               out.println(result);
+                   }
         }
     }
 

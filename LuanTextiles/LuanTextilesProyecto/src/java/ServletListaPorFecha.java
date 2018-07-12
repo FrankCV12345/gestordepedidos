@@ -44,7 +44,7 @@ public class ServletListaPorFecha extends HttpServlet {
                
               List<EntidadVentasPorFecha> lista = ln.ListaVentasPorFecha(fecha);
               double total =0.0;
-                 out.println("<table>");
+                 out.println("<table style='font-size :12px;'>");
                   out.println("<tr><th>ID PEDIDO</th><th>CATEGORIA</th><th>DETALLE</th><th>FECHA ENTREGA</th><th>UNIDADES</th><th>PRECIO UNIT</th><th>ESTADO</th><th>SUB TOTAL</th></tr>");
               for(EntidadVentasPorFecha v :lista ){
                    out.println("<tr>");
