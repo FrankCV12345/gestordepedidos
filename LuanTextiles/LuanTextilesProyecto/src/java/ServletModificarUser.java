@@ -37,14 +37,15 @@ public class ServletModificarUser extends HttpServlet {
              
             try{
                
-                 int definidor = Integer.parseInt(request.getParameter("definidor"));
+                  int definidor = Integer.parseInt(request.getParameter("definidor"));
                  String campo = request.getParameter("campo");
                  int id_user = Integer.parseInt(request.getParameter("id_usu"));
                  LnAdmin ln = new LnAdmin();
+                  
              boolean resp = ln.ModificaUsuario(id_user,definidor,campo);
                  out.println(resp);
             }catch(Exception e){
-                out.println("error: "+e);
+                out.println(e.getMessage());
             }
         }
     }

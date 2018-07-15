@@ -106,7 +106,7 @@ public class AdoPedido {
     List<EntidadPedidos> ListaPedido= new ArrayList<EntidadPedidos>();
     EntidadPedidos p;
    
-       String consulta ="select * from pedidos_padre";
+       String consulta ="select * from pedidos_padre order by id_pedidos_padre";
       
         try{
             if(!BDconexion.estaconectado()){

@@ -61,7 +61,7 @@
                      var apellido = $("#ApellidosUsuario").val();
                      var telefono = $("#telefonoUsuario").val();
                      var nombreUsuario = $("#nomusu").val();
-                     var puesto = $("#puesto").val();
+                     var puesto = $("#puestoR").val();
                      var contra = $("#contrasenia").val();
                       if(nombre ==="" || apellido ==="" || telefono ===""|| nombreUsuario ==="" || puesto ===""|| contra ===""){
                            alert("llene todos los datos");
@@ -91,7 +91,7 @@
                               break;
                           case "apellidos":definidor = 1;
                               break;
-                          case "nomusu": definidor = 2;
+                          case "nombusu": definidor = 2;
                               break;
                           case "puesto": definidor = 3;
                               break;
@@ -102,7 +102,7 @@
                           case "contra": definidor = 6;
                               break;
                       }
-                      var campo = prompt("ingrese un campo");
+                      var campo = prompt("ingrese  campo");
                       if(campo===null){
                           alert("no ingreso datos");
                       }

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import LogicaDeNegocio.*;
+import static LogicaDeNegocio.LnAdmin.rpta;
 
 /**
  *
@@ -35,9 +36,11 @@ public class ServletEliminaUser extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             int  idUsus = Integer.parseInt(request.getParameter("iduser"));
+          
             LnAdmin ln = new LnAdmin();
-             boolean estado =  ln.EliminarUser(idUsus);
-             out.println(estado);
+            boolean estado =  ln.EliminarUser(idUsus);
+            out.println(estado+"-"+rpta);
+        
             
         }
     }

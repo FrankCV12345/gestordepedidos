@@ -3,17 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/SARA/Downloads/proyecto-avance-01/LuanTextiles/LuanTextilesProyecto/src/java/ServletCambiaEstadoPedido.java</file>
+            <file>file:/C:/Users/SARA/Downloads/proyecto-avance-01/LuanTextiles/LuanTextilesProyecto/src/java/LogicaDeNegocio/LnPedidoHijo.java</file>
+            <file>file:/C:/Users/SARA/Downloads/proyecto-avance-01/LuanTextiles/LuanTextilesProyecto/src/java/ServletEliminaUser.java</file>
+            <file>file:/C:/Users/SARA/Downloads/proyecto-avance-01/LuanTextiles/LuanTextilesProyecto/src/java/ServletElimina.java</file>
             <file>file:/C:/Users/SARA/Downloads/proyecto-avance-01/LuanTextiles/LuanTextilesProyecto/src/java/Datos/AdoPedidoHijo.java</file>
-            <file>file:/C:/Users/SARA/Downloads/proyecto-avance-01/LuanTextiles/LuanTextilesProyecto/src/java/ServletModificaPedidohijo.java</file>
-            <file>file:/C:/Users/SARA/Downloads/proyecto-avance-01/LuanTextiles/LuanTextilesProyecto/web/cerrar.jsp</file>
-            <file>file:/C:/Users/SARA/Downloads/proyecto-avance-01/LuanTextiles/LuanTextilesProyecto/web/EstiloLuan.css</file>
-            <file>file:/C:/Users/SARA/Downloads/proyecto-avance-01/LuanTextiles/LuanTextilesProyecto/web/menuVendedor.jsp</file>
-            <file>file:/C:/Users/SARA/Downloads/proyecto-avance-01/LuanTextiles/LuanTextilesProyecto/web/menuAdmin.jsp</file>
-            <file>file:/C:/Users/SARA/Downloads/proyecto-avance-01/LuanTextiles/LuanTextilesProyecto/src/java/ServletValidaLogin.java</file>
+            <file>file:/C:/Users/SARA/Downloads/proyecto-avance-01/LuanTextiles/LuanTextilesProyecto/src/java/LogicaDeNegocio/LNPedido.java</file>
+            <file>file:/C:/Users/SARA/Downloads/proyecto-avance-01/LuanTextiles/LuanTextilesProyecto/src/java/Datos/BDconexion.java</file>
             <file>file:/C:/Users/SARA/Downloads/proyecto-avance-01/LuanTextiles/LuanTextilesProyecto/src/java/Datos/ADOAdmin.java</file>
-            <file>file:/C:/Users/SARA/Downloads/proyecto-avance-01/LuanTextiles/LuanTextilesProyecto/web/MenuSistema.jsp</file>
-            <file>file:/C:/Users/SARA/Downloads/proyecto-avance-01/LuanTextiles/LuanTextilesProyecto/src/java/ServletModificaPedidoPadre.java</file>
+            <file>file:/C:/Users/SARA/Downloads/proyecto-avance-01/LuanTextiles/LuanTextilesProyecto/src/java/ServletRegistrar.java</file>
+            <file>file:/C:/Users/SARA/Downloads/proyecto-avance-01/LuanTextiles/LuanTextilesProyecto/src/java/LogicaDeNegocio/LnAdmin.java</file>
+            <file>file:/C:/Users/SARA/Downloads/proyecto-avance-01/LuanTextiles/LuanTextilesProyecto/src/java/Datos/AdoPedido.java</file>
         </group>
     </open-files>
 </project-private>

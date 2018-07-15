@@ -204,7 +204,7 @@ public class ADOAdmin {
    }
       
     public boolean EliminaUser( int idUser){
-     String consulta ="delete from usuario where id_usuario = ?";
+     String consulta ="update  usuario set estado = '1'  where id_usuario = ?";
      int result = 0;
      try{
         if(!BDconexion.estaconectado()){

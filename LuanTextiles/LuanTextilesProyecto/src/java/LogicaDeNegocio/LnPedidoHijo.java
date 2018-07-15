@@ -23,17 +23,30 @@ public class LnPedidoHijo {
     }
     
     public boolean Registrar(EntidadPedidoHijo  peididohijo){
+        if(peididohijo != null){
       return this.getAdopedidohijo().registrar(peididohijo);
+        } else{
+           return false;
+        }
     }
     
     public int UltimoId(){
       return this.getAdopedidohijo().UltimoId();
     }
     public List<EntidadPedidoHijo> ListaPedidoHijo( int IDPadre){
+        if( IDPadre > 0 ){
      return this.getAdopedidohijo().ListaPedidosHijo(IDPadre);
+        } else{
+            return null;
+        }
     }
     public boolean ModificaPedidoHijo(int IDPedidoHijo , int def,String campos ){
+         if(IDPedidoHijo > 0 && def >=0 && campos != null){
      return this.getAdopedidohijo().ModificaPedidoHijo(IDPedidoHijo, def, campos);
+         }else{
+            return false;
+         }
+     
     }
   
     
