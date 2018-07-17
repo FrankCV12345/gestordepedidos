@@ -46,7 +46,7 @@ public class ServletValidaAdmin extends HttpServlet {
                response.sendRedirect("/LuanTextilesProyecto/menuSistemaAdmin.jsp");         
              }
               else if (result==null){
-              response.sendRedirect("/LuanTextilesProyecto/LoginAdmin.html");         
+              response.sendRedirect("/LuanTextilesProyecto/MsgErrorAdmin.jsp");         
              }
         }
     }

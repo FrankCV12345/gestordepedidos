@@ -12,7 +12,7 @@
                     <%  EntidadAdministrador admin = (EntidadAdministrador)session.getAttribute("admin");
                         out.println("<h4>"+admin.getNombres()+"</h4>");  %>
                      </div> 
-                     <div id="cerrarsesion"><a href="cerrar.jsp">CERRAR SESIÓN </a></div>
+                     <div id="cerrarsesion"><a href="CerrarSessionAdmin.jsp">CERRAR SESIÓN </a></div>
                 </div>
                 <div class="items-menu-sistema">
                     <div onclick="Despliega('ventana-registrar','padre-ventanas')">

@@ -64,7 +64,9 @@ public class LnAdmin {
     public boolean EliminarUser( int idUser){
         
         if( idUser > 0 ){
+            rpta ="se inhabilito user";
      return this.getLnadmin().EliminaUser(idUser);
+        
         }else{
          return false;
         }
