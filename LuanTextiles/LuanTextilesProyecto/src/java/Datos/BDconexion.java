@@ -44,7 +44,7 @@ public class BDconexion {
          return false;
         }
     }
-    
+    /*
     public static int EnviarActualizacion(String cons){
        try {
           return ejecutarActualizacion(cnx.prepareStatement(cons));
@@ -64,6 +64,6 @@ public class BDconexion {
          msg ="eror al jecutar consulta"+ e.getMessage();
      }
      return 0;
-    }
+    }*/
     
 }

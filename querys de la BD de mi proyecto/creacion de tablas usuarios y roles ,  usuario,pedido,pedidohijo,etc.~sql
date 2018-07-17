@@ -69,7 +69,7 @@ values(id_usuario.nextval,'frank','campos vilchez','administrador','990418363','
 insert into usuario(id_usuario,nombres,apellidos,puesto,telefono,nom_usuario,contrasenia,estado,idadministrador)
 values(id_usuario.nextval,'lucas','ramos  peres','operario','990718363','lucasrp','entrada3','0',1);
 
-insert into usuario(id_usuario,nombres,apellidos,puesto,telefono,nom_usuario,contrasenia,estado,idadministrador)
+insert into usuario(id_usGRANT CREATE SESSION TO frankcv;uario,nombres,apellidos,puesto,telefono,nom_usuario,contrasenia,estado,idadministrador)
 values(id_usuario.nextval,'juana','lopez rojas','operario','990418383','juanalr','entrada3','0',1);
 
 
@@ -78,6 +78,20 @@ values(id_usuario.nextval,'juana','lopez rojas','operario','990418383','juanalr'
 create user frankcv identified by entrada3;
 create user lucasrp identified by entrada3;
 create user juanalr identified by entrada3;
+
+/*CREANDO ROLES Y ASIGNANDO PRIVILEGIOS 
+create role empleados;
+GRANT CREATE SESSION TO frankcv;
+GRANT CREATE SESSION TO lucasrp;
+GRANT CREATE SESSION TO juanalr;
+
+grant  update , delete, insert ,select on  pedidos_padre   to empleados;
+grant  update , delete, insert ,select on  peidos_hijo  to empleados;
+grant select on usuario to  empleados;*/
+/*ASIGNANDO PRIVILEGIOS ROLES
+GRANT empleados TO frankcv;
+GRANT empleados TO lucasrp;
+GRANT empleados TO juanalr;*/
 
 /*procedimientos almacenados */
  create or replace procedure modifica_unidades( nvounidades  int, idHijo  int) is
@@ -116,8 +130,8 @@ END;
      end;
 
 
-/* PROBANDO*/
-
-
+/* PROBAND
+select * from usuario where nom_usuario ='frankcv'
+*/
 
 

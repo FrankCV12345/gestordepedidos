@@ -55,6 +55,7 @@
              
              $.get("/LuanTextilesProyecto/ServletRegistrar",{"detalles[]":detallesArreglo,"FechasEntrega[]":fechas_entregas,"Subtotales[]":Subtotales,"categoria[]":categorias,"unidades[]":unidadesArreglo,"precio_unitario[]":precios_unitarios,nomCli}, function(data, status){
                  alert("Data: " + data + "\nStatus: " + status);
+                 location.reload();
                 });
                 
              });

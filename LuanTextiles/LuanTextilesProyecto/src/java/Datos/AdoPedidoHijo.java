@@ -78,10 +78,10 @@ public class AdoPedidoHijo {
             PH.setId_pedidos_padre(rs.getInt("id_pedidos_padre"));
             PH.setCategoria(rs.getString("categoria"));
             PH.setUnidades(rs.getInt("unidades"));
-            PH.setPreciounitario(rs.getInt("precio_unitario"));
+            PH.setPreciounitario(rs.getDouble("precio_unitario"));
             PH.setFecha_entrega(rs.getString("fecha_entrega"));
             PH.setDetalles(rs.getString("detalle"));
-            PH.setSubtotal(rs.getInt("Sub_total"));
+            PH.setSubtotal(rs.getDouble("Sub_total"));
             PH.setEstado(rs.getString("estado"));
            ListaPedidoHijo.add(PH);
          }
