@@ -208,7 +208,7 @@ box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
 }
 .frm-admin{
     box-sizing: border-box;
-    float: left;
+    float: left; 
     overflow: hidden;
     min-width: 49.8%;
      max-width: 49.8%;
@@ -240,12 +240,12 @@ box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
     padding-bottom: 10px; 
 }
 
-#contenedor-lista-ventas-fecha th,#contenedor-lista-ventas-vendedor th,#caja-pedidoB th,#lista-users th,#caja-usu th, #caja-pedido th{
+#contenedor-lista-ventas-estado th ,#contenedor-lista-ventas-fecha th,#contenedor-lista-ventas-vendedor th,#caja-pedidoB th,#lista-users th,#caja-usu th, #caja-pedido th{
     background-color: #1B242F;
     color: white;
     padding: 2px;
 }
- #contenedor-lista-ventas-fecha table,#contenedor-lista-ventas-vendedor table ,#caja-pedidoB table,#lista-users table,#caja-usu table,#caja-pedido table{
+ #contenedor-lista-ventas-estado table,#contenedor-lista-ventas-fecha table,#contenedor-lista-ventas-vendedor table ,#caja-pedidoB table,#lista-users table,#caja-usu table,#caja-pedido table{
     margin: 0 auto;
     text-align: center;
     
@@ -261,7 +261,7 @@ box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
 #modlaPedidoHijo table{
     margin: 0 auto;
 }
-#contenedor-lista-ventas-fecha td,#contenedor-lista-ventas-vendedor td , #modlaPedidoHijo td{
+#contenedor-lista-ventas-estado td,#contenedor-lista-ventas-fecha td,#contenedor-lista-ventas-vendedor td , #modlaPedidoHijo td{
     /*border: solid 2px #E9E8E2;*/
     background-color: white;
     color: black;

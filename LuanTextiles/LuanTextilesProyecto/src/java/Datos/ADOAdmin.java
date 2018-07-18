@@ -175,7 +175,7 @@ public class ADOAdmin {
     List<EntidadUsuario> ListaUsuarios= new ArrayList<EntidadUsuario>();
     EntidadUsuario usuario;
    
-       String consulta ="select * from usuario";
+       String consulta ="select * from usuario order by id_usuario";
       
         try{
             if(!BDconexion.estaconectado()){
@@ -279,7 +279,34 @@ public class ADOAdmin {
         }
      return lstvent;
     }
-    
+     public List<EntidadVentasPorFecha> ListaPorEstado(){
+      String consulta ="select * from peidos_hijo where estado = '0'";
+        List<EntidadVentasPorFecha> lstvent = new ArrayList<EntidadVentasPorFecha> ();
+        EntidadVentasPorFecha vta;
+        try{
+            if(!BDconexion.estaconectado()){
+                BDconexion.conectar();
+            }
+            PreparedStatement psmt = cnx.prepareStatement(consulta);
+           
+            ResultSet rs =  psmt.executeQuery();
+            while(rs.next()){
+                vta= new EntidadVentasPorFecha();
+                vta.setIdpadre(rs.getInt("id_pedidos_padre"));
+             vta.setCategoria(rs.getString("categoria"));
+             vta.setUnidades(rs.getInt("unidades"));
+             vta.setPrecio_unitario(rs.getDouble("precio_unitario"));
+             vta.setFecha_entrega(rs.getString("fecha_entrega"));
+             vta.setDetalle(rs.getString("detalle"));
+             vta.setEstado(rs.getString("estado"));
+             vta.setSubTotal(rs.getDouble("sub_total"));
+             lstvent.add(vta);
+            }
+        }catch(SQLException e){
+          msg=" no se ejecuto "+e;
+        }
+     return lstvent;
+    }
    
     
 }

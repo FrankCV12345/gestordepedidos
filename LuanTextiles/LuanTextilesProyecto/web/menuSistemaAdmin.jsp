@@ -146,6 +146,14 @@
                           $("#contenedor-lista-ventas-fecha").html(data);
                       });
                  });
+                 
+                 $("#busVentPorEstado").click(function(){
+                  
+                      $.get("/LuanTextilesProyecto/ServletListarPorEstado",{},function(data){
+                          $("#contenedor-lista-ventas-estado").html(data);
+                        
+                      });
+                 });
                    
                });
                
@@ -192,6 +200,21 @@
                                     
                                 </div>
                             </div>
+                             <div class="frm-admin">
+                                 <div class="opcionesAdmin">
+                                VER  PENDIENTES
+                              </div>
+                                <form style="text-align: center;">
+                                   
+                                    
+                                    <input type="button" value="VER" class="btn" id="busVentPorEstado">
+                                  
+                                </form>
+                                <div id="contenedor-lista-ventas-estado">
+                                    
+                                </div>
+                            </div>
+                            
                         </div>
                        
                    <div class="padre-ventanas" >

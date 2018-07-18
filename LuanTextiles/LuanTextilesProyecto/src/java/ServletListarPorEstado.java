@@ -19,8 +19,8 @@ import java.util.List;
  *
  * @author SARA
  */
-@WebServlet(urlPatterns = {"/ServletListaPorFecha"})
-public class ServletListaPorFecha extends HttpServlet {
+@WebServlet(urlPatterns = {"/ServletListarPorEstado"})
+public class ServletListarPorEstado extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,15 +36,13 @@ public class ServletListaPorFecha extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-           
-                
-                try{
-                    String  fecha = request.getParameter("fecha");
+              try{
+                    
                LnAdmin ln = new LnAdmin();
                
-              List<EntidadVentasPorFecha> lista = ln.ListaVentasPorFecha(fecha);
+              List<EntidadVentasPorFecha> lista = ln.ListaPorEstado();
               double total =0.0;
-              int totalEn = 0 , totalNoEnt =0;
+              int totalP =0;
                  out.println("<table style='font-size :12px;'>");
                   out.println("<tr><th>ID PEDIDO</th><th>CATEGORIA</th><th>DETALLE</th><th>FECHA ENTREGA</th><th>UNIDADES</th><th>PRECIO UNIT</th><th>ESTADO</th><th>SUB TOTAL</th></tr>");
               for(EntidadVentasPorFecha v :lista ){
@@ -58,20 +56,13 @@ public class ServletListaPorFecha extends HttpServlet {
                     out.println("<td>"+v.getEstado()+"</td>");
                     out.println("<td>"+v.getSubTotal()+"</td>");
                    out.println("</tr>"); 
-                   if(v.getEstado().equals("0")){
-                      totalEn +=0;
-                      totalNoEnt +=1;
-                   }else{
-                     totalEn +=1;
-                     totalNoEnt +=0;
-                   }
-                       
                    total = total +v.getSubTotal();
+                   totalP +=1;
               }
               out.println("</table>");
               out.println("<label style='color:black;padding:2px;'> TOTAL S/"+total+"</label>");
-              out.println("<label style='color:black;padding:2px;'> Entregados "+totalEn+"</label>");
-              out.println("<label style='color:black;padding:2px;'> Por entregar "+totalNoEnt+"</label>");
+              out.println("<label style='color:black;padding:2px;'> TOTAL pendiendes :"+totalP+"</label>");
+             
            
                 }catch(Exception e){
                    out.println(e);

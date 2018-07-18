@@ -86,4 +86,7 @@ public class LnAdmin {
           return null;
         }
     }
+    public List<EntidadVentasPorFecha> ListaPorEstado(){
+      return this.getLnadmin().ListaPorEstado();
+    }
 }
